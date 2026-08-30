@@ -6,7 +6,7 @@ on:
       source_branch:
         description: '插件源码分支（Gitee electron-egg-demo）'
         required: true
-        default: 'main'
+        default: 'feature/ztools-roadmap'
         type: string
 
 permissions:
