@@ -25,6 +25,44 @@ const { execSync } = require('child_process');
 const { createZip } = require('../lib/zip');
 const signLib = require('../lib/sign');
 
+// ============ 分类归一化 ============
+
+// 分类白名单（code -> 中文名）
+const CATEGORY_WHITELIST = {
+  'app': '应用', 'tool': '工具', 'admin': '管理后台',
+  'hardware': '硬件', 'device': '设备', 'camera': '摄像头',
+  'media': '媒体', 'streamer': '流媒体', 'system': '系统',
+  'extension': '扩展', 'developer': '开发者', 'service': '服务',
+  'gateway': '网关', 'serial': '串口', 'socket': 'Socket',
+  'websocket': 'WebSocket', 'print': '打印', 'scale': '电子秤',
+  'scanner': '扫描器', 'skill': '技能', 'other': '其他',
+};
+
+// 中文/历史分类名 -> 标准 code
+const CATEGORY_ALIASES = {
+  '应用': 'app', '工具': 'tool', '管理后台': 'admin',
+  '硬件': 'hardware', '设备': 'device', '摄像头': 'camera',
+  '媒体': 'media', '流媒体': 'streamer', '系统': 'system',
+  '扩展': 'extension', '开发者': 'developer', '服务': 'service',
+  '网关': 'gateway', '串口': 'serial', '打印': 'print',
+  '电子秤': 'scale', '扫描器': 'scanner', '技能': 'skill',
+  'Socket': 'socket', 'WebSocket': 'websocket', '其他': 'other',
+};
+
+/**
+ * 归一化分类：白名单 code 原样保留，中文/历史名映射到标准 code，未知值落到 other
+ */
+function normalizeCategory(cat) {
+  const c = String(cat || '').trim();
+  if (!c) return 'other';
+  if (CATEGORY_WHITELIST[c]) return c;
+  if (CATEGORY_ALIASES[c]) return CATEGORY_ALIASES[c];
+  const lower = c.toLowerCase();
+  if (CATEGORY_WHITELIST[lower]) return lower;
+  if (CATEGORY_ALIASES[lower]) return CATEGORY_ALIASES[lower];
+  return 'other';
+}
+
 // ============ 配置 ============
 
 const REGISTRY_DIR = path.resolve(__dirname, '..');
@@ -172,15 +210,7 @@ async function cmdPublish(argv) {
     }
   }
 
-  const categoryNames = {
-    'app': '应用', 'tool': '工具', 'admin': '管理后台',
-    'hardware': '硬件', 'device': '设备', 'camera': '摄像头',
-    'media': '媒体', 'streamer': '流媒体', 'system': '系统',
-    'extension': '扩展', 'developer': '开发者', 'service': '服务',
-    'gateway': '网关', 'serial': '串口', 'socket': 'Socket',
-    'websocket': 'WebSocket', 'print': '打印', 'scale': '电子秤',
-    'scanner': '扫描器', 'skill': '技能', 'other': '其他',
-  };
+
 
   const existingIdx = registry.plugins.findIndex(p => p.id === pluginId);
   const versionEntry = {
@@ -199,6 +229,7 @@ async function cmdPublish(argv) {
     existing.versions[version] = versionEntry;
     existing.name = manifest.name;
     existing.description = manifest.description || existing.description;
+    if (manifest.category) existing.category = normalizeCategory(manifest.category);
     if (compareVersions(version, existing.latestVersion) > 0) {
       existing.latestVersion = version;
     }
@@ -207,7 +238,7 @@ async function cmdPublish(argv) {
       id: pluginId,
       name: manifest.name,
       description: manifest.description || '',
-      category: manifest.category || 'other',
+      category: normalizeCategory(manifest.category),
       type: manifest.type || 'unknown',
       author: manifest.author || 'NF Team',
       icon: manifest.icon || '',
@@ -230,9 +261,9 @@ async function cmdPublish(argv) {
   // 重建分类统计
   const cats = {};
   for (const p of registry.plugins) {
-    const cat = p.category || 'other';
-    if (!cats[cat]) cats[cat] = { name: categoryNames[cat] || cat, count: 0 };
-    cats[cat].count++;
+    p.category = normalizeCategory(p.category);
+    if (!cats[p.category]) cats[p.category] = { name: CATEGORY_WHITELIST[p.category] || p.category, count: 0 };
+    cats[p.category].count++;
   }
   registry.categories = cats;
 
@@ -262,6 +293,47 @@ async function cmdPublish(argv) {
 
 // ============ 帮助 ============
 
+// ============ 分类归一化命令 ============
+
+/**
+ * 归一化 registry.json 中全部插件的分类并重建分类统计（只改本地文件，不做 git 操作）
+ */
+async function cmdNormalize() {
+  if (!fs.existsSync(REGISTRY_PATH)) {
+    err('registry.json 不存在');
+    return 2;
+  }
+  let registry;
+  try {
+    registry = JSON.parse(fs.readFileSync(REGISTRY_PATH, 'utf8'));
+  } catch (e) {
+    err('registry.json 解析失败: ' + e.message);
+    return 2;
+  }
+  const plugins = Array.isArray(registry.plugins) ? registry.plugins : [];
+  const changed = [];
+  for (const p of plugins) {
+    const norm = normalizeCategory(p.category);
+    if (norm !== p.category) {
+      changed.push(p.id + ': ' + p.category + ' -> ' + norm);
+      p.category = norm;
+    }
+  }
+  const cats = {};
+  for (const p of plugins) {
+    if (!cats[p.category]) cats[p.category] = { name: CATEGORY_WHITELIST[p.category] || p.category, count: 0 };
+    cats[p.category].count++;
+  }
+  registry.categories = cats;
+  registry.totalPlugins = plugins.length;
+  registry.updatedAt = new Date().toISOString();
+  fs.writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2) + '\n', 'utf8');
+  log('分类归一化完成，修正 ' + changed.length + ' 个插件:');
+  changed.forEach((c) => log('   ' + c));
+  log('当前分类 ' + Object.keys(cats).length + ' 个: ' + Object.keys(cats).join(', '));
+  return 0;
+}
+
 function usage() {
   log(`nf-plugin — NF Client 插件发布工具（Registry 仓库版）
 
@@ -272,6 +344,7 @@ function usage() {
 publish 选项:
   --no-push      跳过 git 提交推送（仅本地写入）
   --no-sign      跳过签名
+  node publish/nf-plugin-cli.js normalize            归一化 registry.json 分类并重建统计
 
 示例:
   node publish/nf-plugin-cli.js publish ../my-plugin
@@ -289,6 +362,8 @@ async function main() {
   switch (cmd) {
     case 'publish':
       return await cmdPublish(rest);
+    case 'normalize':
+      return await cmdNormalize();
     case 'help':
     case '--help':
     case '-h':

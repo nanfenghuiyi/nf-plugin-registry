@@ -1,0 +1,38 @@
+# NF Client 插件市场 API — Cloudflare Workers 配置
+# 部署前置步骤：
+#   1. npx wrangler d1 create nf-market-stats      # 将输出的 database_id 替换下方占位符
+#   2. npx wrangler d1 migrations apply DB --remote
+#   3. npx wrangler deploy
+name = "nf-market-api"
+main = "src/index.ts"
+compatibility_date = "2026-08-01"
+
+[observability]
+enabled = true
+
+[vars]
+GITHUB_OWNER = "nanfenghuiyi"
+GITHUB_REPO = "nf-plugin-registry"
+GITHUB_BRANCH = "main"
+# registry.json isolate 内存缓存 TTL（秒）
+REGISTRY_CACHE_TTL_SECONDS = "300"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "nf-market-stats"
+database_id = "REPLACE_WITH_REAL_D1_DATABASE_ID" # 本地 dev 走模拟数据库，不校验此 ID
+migrations_dir = "migrations"
+
+# 速率限制 binding（open beta）：/api/* 全局 100 次/分/IP
+[[unsafe.bindings]]
+name = "RATE_LIMITER_API"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 100, period = 60 }
+
+# 速率限制 binding：/api/download 单独收紧到 30 次/分/IP
+[[unsafe.bindings]]
+name = "RATE_LIMITER_DOWNLOAD"
+type = "ratelimit"
+namespace_id = "1002"
+simple = { limit = 30, period = 60 }

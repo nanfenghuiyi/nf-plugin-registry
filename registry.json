@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-30T04:55:08.441Z",
+  "updatedAt": "2026-08-30T07:10:29.018Z",
   "totalPlugins": 34,
   "categories": {
     "admin": {
@@ -9,7 +9,7 @@
     },
     "tool": {
       "name": "工具",
-      "count": 15
+      "count": 16
     },
     "app": {
       "name": "应用",
@@ -25,6 +25,10 @@
     },
     "developer": {
       "name": "开发者",
+      "count": 1
+    },
+    "gateway": {
+      "name": "网关",
       "count": 1
     },
     "socket": {
@@ -57,14 +61,6 @@
     },
     "media": {
       "name": "媒体",
-      "count": 1
-    },
-    "gateway": {
-      "name": "网关",
-      "count": 1
-    },
-    "工具": {
-      "name": "工具",
       "count": 1
     },
     "service": {
@@ -1901,7 +1897,7 @@
       "id": "nf.system.dbtool",
       "name": "数据库管理工具",
       "description": "访问并操作 data/db 目录下的所有本地 SQLite 数据库：列举数据库/表、查看表结构、执行查询与读写（DDL/DML）。",
-      "category": "工具",
+      "category": "tool",
       "type": "app",
       "author": "nf-client",
       "icon": "icon.svg",
