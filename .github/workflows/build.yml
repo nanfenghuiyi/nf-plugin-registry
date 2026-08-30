@@ -1,0 +1,52 @@
+name: 自动构建插件包
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_branch:
+        description: '插件源码分支（Gitee electron-egg-demo）'
+        required: true
+        default: 'main'
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出 Registry 仓库
+        uses: actions/checkout@v4
+
+      - name: 安装 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 安装构建依赖
+        run: npm install
+
+      - name: 拉取插件源码（Gitee 私有仓库）
+        run: |
+          git clone --depth 1 --branch "${{ github.event.inputs.source_branch }}" \
+            "https://oauth2:${{ secrets.GITEE_TOKEN }}@gitee.com/nanfengzzh/electron-egg-demo.git" \
+            /tmp/electron-egg-demo
+          test -d /tmp/electron-egg-demo/plugins && echo "✅ 插件源码目录存在"
+
+      - name: 构建全部插件（混淆 + 签名 + AES 加密）
+        run: |
+          node scripts/build-all.js /tmp/electron-egg-demo/plugins
+
+      - name: 提交并推送构建产物
+        run: |
+          git config user.name "registry-ci"
+          git config user.email "registry-ci@users.noreply.github.com"
+          git add packages/ registry.json
+          if git diff --cached --quiet; then
+            echo "✅ 无变更，跳过提交"
+          else
+            git commit -m "chore(构建): CI 自动构建加密插件包"
+            git push origin main
+            echo "✅ 已推送构建产物"
+          fi
