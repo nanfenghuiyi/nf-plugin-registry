@@ -1,0 +1,12 @@
+{
+  "name": "nf-plugin-registry",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NF Client 插件注册表构建工具",
+  "scripts": {
+    "build": "node scripts/build-all.js"
+  },
+  "devDependencies": {
+    "javascript-obfuscator": "^4.1.1"
+  }
+}

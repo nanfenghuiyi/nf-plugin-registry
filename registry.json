@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-30T03:12:32.094Z",
+  "updatedAt": "2026-08-30T04:55:08.441Z",
   "totalPlugins": 34,
   "categories": {
     "admin": {
@@ -106,12 +106,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 10771,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.admin/1.0.0.zip",
-          "checksum": "ecfdd2ede19c457d9f7c336be3e9098dc1d8636d2dd12841d52b8bc78aa378b8",
-          "signature": "tghrlSELGUe2GbDq9ZqNsbruM819uVH7UcRbS16cnp0cnWxHNfl4TRZYCtEIAPCmgRmtgiPNIRZcDOgdbNq+Bg==",
+          "size": 12802,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.admin/1.0.0.nfpkg",
+          "checksum": "efff08c932568b96a5aad3a3a4b65c89267d9990a55ac58be16ee3c2265205a2",
+          "signature": "7BzixwdZ6CPqr0fMTxIMC+93Q0K6caDQncaaba1Y5xUQz8PIvEFHQ0wSnGPbgsjYZBNjSla5o+253wJWkVpRBA==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.086Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.434Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -173,12 +176,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 20826,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.edge-bookmarks/1.0.0.zip",
-          "checksum": "3493870aae936e8423589cd00e38af4bc2c317b50fa4a97e2cef26fcb6f7a787",
-          "signature": "MisP+xULlFWzwtGvloUOA+a0yVJ4YHEgixsZrAzICHR3lfr+iz2s2BB7Fj37d9LsF5ANJ82XPWjWE3mPfSXyBA==",
+          "size": 25085,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.edge-bookmarks/1.0.0.nfpkg",
+          "checksum": "61cc1d54da0ca453e748dce7ddf74da139dd0e98569c5f39ba37afbda0c582ca",
+          "signature": "J2ZiArKyuyClRKJXP8ORzQpX5u6nP9X5oFE/9ktfg61CWEFldqA50Cgr4IsB0fI3OK2UjLO3XFg6H7/lwFRyBw==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -230,12 +236,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 16877,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.galileo-os/1.0.0.zip",
-          "checksum": "71bfb5cfdde4acfce8ddbc6a61d95a689e7bd1b2a8168f23ce102539df2ea857",
-          "signature": "Dw9q3caQCVqCwwfALBEqO9uV4w6roBwIEfPMp0uFsBQpFsEQoGD1ZTfr2BeBZlcsZiKu89bfQCZyfiwqZd1YBQ==",
+          "size": 20960,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.galileo-os/1.0.0.nfpkg",
+          "checksum": "36e809d8d92178ba2e759041578685c3b25cc541217281207f5049a25dc69031",
+          "signature": "TGWFAIB/YCmigasFU+BTdiG0tvSFMICIM+BdW1HsnTNSWypphdaD473PLxpoF1ux6TMqQDji88N51A19fIeBAw==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -312,12 +321,15 @@
         "1.1.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 275674,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.gltf-optimizer/1.1.0.zip",
-          "checksum": "fcbf51410dfb45d9415efe354f818607fb8c76868fb4b404cb1c15436ef28daa",
-          "signature": "PrX1nYV5lJ15BVBh88TDq1aueATeIh99AnO9g51E504RaJfqkvJ22/NTqKkKqw2Lvo+lgL4VWzCkvEZ8E6vdBg==",
+          "size": 491443,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.gltf-optimizer/1.1.0.nfpkg",
+          "checksum": "4dc0a711598ef633806e5b9408ceb6e6c953267a7bb87b4efa72bb1b42f71462",
+          "signature": "uw/hKw1PFVYS6rOcYixOOWNqJvkKSSS8xVRWFzM2v+aS4xTPBkY5LyZqP3ulikcQ4pxLK7GHUmtfQe3WfkcPDw==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.1.0"
@@ -377,12 +389,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 18421563,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.live2d-pet/1.0.0.zip",
-          "checksum": "c1e89e02f561a37e57576d9c107e34c9c89f349f7dd39a90440147a96714bd7f",
-          "signature": "J17z7kZ8hfhCNNOC1LqNWnd5QKtZU3PNGB5SbDePnMhqS8EIlBuFgvSY++E3xcflOe0Sof3nzPCM3npVyfc4Cg==",
+          "size": 18454863,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.live2d-pet/1.0.0.nfpkg",
+          "checksum": "1be157b0ed8ada6de01b5f27827840f62f86b0452f5d53bf8ba019f7bfd69759",
+          "signature": "okuP9FbZ7nNKw8LxXgzUHTtWLwEaQYsSWG79lfPCaTv+9du7hLKKWA4QlEUNJZ+2iOxHbzCrR3ic+oi0xtJhDQ==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -433,12 +448,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 12720,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.local-search/1.0.0.zip",
-          "checksum": "0aba5c3a650c29be938db12577f6c7d34978744afbd7469d0e2b8fbb44adf997",
-          "signature": "IVn6ku24F+XWsr2909KkrG7Sxaq4lljeDrJp2WIL2+wrXBpIlr8LOmhVtU9nTF24lgXgpeAa1trpZbzVJvy3Cg==",
+          "size": 16438,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.local-search/1.0.0.nfpkg",
+          "checksum": "7f497204c71765a9a45bd1748b08d4c2460cfbbbbdfadc7495a65e6a6ebe4b44",
+          "signature": "yyYwWUub6lF1gYRK4h9qnXBOFPap4bfFpPjbur60Jx6yTUXhlV+eRp5tvJH4p+A9emWsSylq97F7lKrlp+CJCw==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -484,12 +502,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 3389,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.localweb/1.0.0.zip",
-          "checksum": "58470f0b40101795d9e1d1ec6d53ed0d29f8ad114f6f5d48bf80c0d97befcd6d",
-          "signature": "fy/v0KvjYEVgP+yBHXs7/+odce7wSCMx8139MASvbZARxKURmTvbKMj3OEMizrl1zTUgzXx+2cm6ccyp57znDw==",
+          "size": 5108,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.localweb/1.0.0.nfpkg",
+          "checksum": "ca5663a305568eb961fa08427d224479e466f8b82ddf94adf90fbecba03b5157",
+          "signature": "JpCyv9lwCfJE0kTYaEzOgJhm6/UN4kvEWz2Ot3LX7+Zr1GEHquV/pU0g4RxmEsztN+/pOJKG0Rzr6Xm/YMKxCQ==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -541,12 +562,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 17983,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.ocr/1.0.0.zip",
-          "checksum": "a75ab92f40b30a0bdff545eb4ca96a37ba23800288e70efab36489b0babaf475",
-          "signature": "aAv0kQD6OO2LNxDePGgPInLgK/vc7ACplSmv5nUM81WdpvNhJjf/7Ce++oKgPcYzFwB3Ml3JT5IZLwJIpkv1AA==",
+          "size": 20799,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.ocr/1.0.0.nfpkg",
+          "checksum": "66a326b7ef256848704bdbdf1fcd1c725c766cd8517af50432d7e5a06062e098",
+          "signature": "FGbgzK0pfaGmf3dXQy8FwI0zil2MmWF4fObd9b6EYUKIKS0yYbnRx6hKUKwtYuM8DTga0ULYhPHGJfEVUxCzDQ==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -601,12 +625,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 67927,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.photo/1.0.0.zip",
-          "checksum": "4b081be963878bf7d008b7c51942f09beb0103f39761f99b65545e105c022d64",
-          "signature": "pEr96WHlY6FtQBXWpOpYITZCVBOdySI5F93Js9nt5NbIq6BbLs44mA8+Ro8pxO1jm+FAUuDrKUI/OdKXngTpAg==",
+          "size": 112626,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.photo/1.0.0.nfpkg",
+          "checksum": "dae211346c9441d270b6cf37d7a7c1ce3ad34a53d3ec2d565347803828c4adc7",
+          "signature": "IXmErpij0zOTyH6RopMVGrYjKt9iROotWcPV5DSyN3KFVJ7dQeESXYutJTaL62dGYXbd+uS+WgE6LNGYHUUuCg==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -662,12 +689,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 18712,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.planner/1.0.0.zip",
-          "checksum": "332cb6aa57107b0cb56403452a3d6e94c7ec2ff58534648a6eb10b9dc0d8521d",
-          "signature": "4Dn1RE5lrUyBy3OOa96vuB+L2lNdv3o/HBvhBPRzmR6varyOOeyvs2BwpyHWkFLQdywdZsYC88glU3CYjkRaAQ==",
+          "size": 20410,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.planner/1.0.0.nfpkg",
+          "checksum": "fec3dd15729eabfd2716d81ff9fa3bd719a154b319991601fe7de20b2107caa8",
+          "signature": "/5I+Cj6/RWhZCrQPUBoVVI9iFA1f6xEukmU9do7R8qyH1/heW8ejHL6Bkoxj31OL0UHIS2c0aiwv1f0ZKOREBg==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -719,12 +749,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 18535,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.screenshot/1.0.0.zip",
-          "checksum": "e3cde56fd9679ec6a2a613404facd32e88fe4228c55739536a2bb5600cab5302",
-          "signature": "jtZFDeEhPK+snY2YEeZENzogIHoQ+k/QoZeXuPo4OjPlNLXiwVxTek7rYPD8TIWlrZU9pI33Oezvuec9N0MYBg==",
+          "size": 23063,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.screenshot/1.0.0.nfpkg",
+          "checksum": "2037b6f06d39582ed560db4b9286373175e45dab0a6443dd54eb010c42a746ad",
+          "signature": "1NUX87+UG8Znpr525toxz0Ztr11V4gKoDPg2lwsOxmrsjaLVLqUEB4+vEbh0GzBj0ccz7Juoudx6xQTteJ0mBQ==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -796,12 +829,15 @@
         "2.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 42985,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.todo/2.0.0.zip",
-          "checksum": "b05bd9d8845e101d85da7516b204a4df3c3f2adf3e7169515d1c1b87fad250a8",
-          "signature": "0Ze82wmP4ddgkgBxoghX9fiedULL1Wj3PBR/d3+khz7+mQPU61GpdupnfaVVcuUWW4xMhU08cl0V8LbCM5kUAQ==",
+          "size": 48097,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.todo/2.0.0.nfpkg",
+          "checksum": "94de569debe7161173542e6c47765c986d7903156441ffba2eb19cb99e5295f2",
+          "signature": "gYmHy5tsCQll9UU3xzELD8nePhh+tf6IqwqM3gwVDNfRGGGjNS3yezg9GEM5D7YqnbOowdWlOTMiPOmNnCBvAA==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "2.0.0"
@@ -861,12 +897,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 13592,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.web-quick/1.0.0.zip",
-          "checksum": "06a78749b891f4cac9c510c6118014e2c3b1315f0c04b63927e59e9f732fb34a",
-          "signature": "L/9Wl4wIWSdlPVZpaFv5HP633jFZvJascodn8EuMH2A1Xtnal/ZxmFu7mSWwgR5aJeMCKuumBnhott8nJpYbBQ==",
+          "size": 16795,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.web-quick/1.0.0.nfpkg",
+          "checksum": "7bac098de148c236b02c0c495e7379974620344cc4fef7db7acc413bcbef4137",
+          "signature": "a5K/tOKdLXIcRBxd1L7A09CHMY9rSjYV5nxTn1RZKPlUe+Kyxx5ufZzWW1lud2qEnejshe3SvcvlECYS2JBKBA==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -903,12 +942,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 15331879,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.device.hikvision/1.0.0.zip",
-          "checksum": "71e02ee1652883acfd50d7d4d1f7446e524c29c9cd9288ea21c6da0d63b11ad3",
-          "signature": "ylzeNKeG/anTr/qOFzRRwrAHO+Rot3ZAgz3Fg3626eSx13SBN1dv9uzp3CiQDUnXOFVUWr6ptPZRJ8ieuqTWAw==",
+          "size": 15332650,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.device.hikvision/1.0.0.nfpkg",
+          "checksum": "7f262b8074a9a7f4425a942b47ff5c0a281225909625f63f2ca23b2e6fd5fab2",
+          "signature": "432uPlS1e8oIebCY0j7x9CBT5uIXynMjqTulN/eY1D0ho7HA0qZAWHLR5XlyB3sjILsgjYx7Fr2vyMN3u+OxCg==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -957,12 +999,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 4607,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.extension.crossLanguage/1.0.0.zip",
-          "checksum": "a7790ecf7d9a85e0d0ff960036021458a094067030ad9749640cbc055f56aacd",
-          "signature": "2NYcz5F7hYJWV3iyDvS6pBeQQbZtmeub5XyrHMBEZNjD4a6nBjYx8uPE3pNgu/yXbyt6Jx+Jy72lAMswV+f7AA==",
+          "size": 7040,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.extension.crossLanguage/1.0.0.nfpkg",
+          "checksum": "583a8e29b2f813da2fb56fdecb7d06d0cb91c14861d0e32c48832430fcfd38a7",
+          "signature": "2O3Q6RMJQBLl63bllmQNieKCYDTjxO7QoTGIwwcTFLZy3Qx3BU/99E54GKbR9yvoBtktTcGwC9th86gacCaoDQ==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1006,12 +1051,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 12114,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.extension.debugger/1.0.0.zip",
-          "checksum": "6497988d66d8f7c1fe4caf33437284fd2c975b02f2d9003c26eb6a556c299325",
-          "signature": "q+1xi/2B0MvFQQo3e6wgVYwcAvKm6BHBXRDvHJ03pw4Au3g14yhg3fCH0c/5JZZqLHmZPFchrdiULer5whlRDg==",
+          "size": 16053,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.extension.debugger/1.0.0.nfpkg",
+          "checksum": "ccdf35631145e82b94aa290cc3c1ad857e2692418b389b63268ff8b21314b58c",
+          "signature": "3j3RzHLD2s+PTsTlNvTkuhO1+bOU0BiSpywnO1x6wmkUkvmvwLNcfqzAtlswScIr2hSzh8ssWgOV88Vjv8HtDA==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1047,12 +1095,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": false,
-          "size": 2421,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.extension.loader/1.0.0.zip",
-          "checksum": "e5757d71c366c61e48176999c601c1009a5913a92a9cc8819f163cf2a179f759",
-          "signature": "dOe/fgNhB1SCCHqEWyG3zugRpZA+HwoIiHhLiDH9iBvQB25ur40Hu+PCR9uZxiF0LFz0sWlDjPsla8CyL+bxBQ==",
+          "size": 4016,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.extension.loader/1.0.0.nfpkg",
+          "checksum": "c775015cbb4acb9c988e9b2f8b8d632c11b769b2cf7f8ef5057d424caac021da",
+          "signature": "R7Qk8GOfrfzd0tREIpGP6pzTpb+5XYz5KcAoAgZ161Zwzu1A65JWh8ff1flvq3zUb+vcK0Qm3jPMu2Aa0rorAw==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1098,12 +1149,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 20481,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.extension.pagespy/1.0.0.zip",
-          "checksum": "1c2d91194368701a81622ee3f6476033c25f5d9e2a0d5e0c31b321bf1a1f00da",
-          "signature": "zr4usrF3T7sTdhPnxQur8GijNMLFylq3pw0jPjz9ZOQQKn1pRhDHVeZwEEuc+MUer3HF1oJY5Ke5i2fuTU42Cg==",
+          "size": 23539,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.extension.pagespy/1.0.0.nfpkg",
+          "checksum": "0aa065ea450063958e71321cbfcef0d47d1978df2c69fb44ea21ae22fd374fdf",
+          "signature": "iyyBmWrau51JfuQdqi8QhWi6FiCSQKN2C2AVsjLRjCTxkhuORFToy4mrv8HX0+l41ZEHOTMDJe/KYUJ1pqkCCg==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1154,12 +1208,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 6849,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.gateway/1.0.0.zip",
-          "checksum": "899383c9b8d5e30b1ba853c3972ab4ac987151e9e0f0a8745dd2aa469285cf39",
-          "signature": "u1sHMOc/JtUmG7qqd0ngDYf1nK5iVYMxGwk7hxWUt0rI6ydqlyvVQofp5m+Pb7Kg6ab4XnA0FYEjZSCTRil3Cg==",
+          "size": 9652,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.gateway/1.0.0.nfpkg",
+          "checksum": "f9bf59fcccb6114bb63691d850348058f9b4b0c2a611e7f2ffa5f80dcca7f4ce",
+          "signature": "wjsMSCwoYrC02eImiKUXDfi3cduADgucwNB+ngU7gRzi/ARHkGwQluz2J0OlI2PXg8S3MxrKDHgHHE8RVIALBQ==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1202,12 +1259,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 9453,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.mqtt/1.0.0.zip",
-          "checksum": "b04474184565617a72609fc8bfda49522091c378c702919644a658cde64e6018",
-          "signature": "PHlsF3bE/KPAdgX/vbRL+q3+3zCXaoDzsSUcnQ1KJB7Yo4m54d03SBLKGtoTfnTe4PVScon+9PCxpg/V2ynNDw==",
+          "size": 11708,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.mqtt/1.0.0.nfpkg",
+          "checksum": "7ac680db11265bc69aef6d720f43e9ef6b9266de5bbb896f31e777fa3e7c9ee0",
+          "signature": "vynnI0vhScMuM/wgLrCReb0SLqOG5UQmdbLcYp6gDpKND5K3zUoEWlozzHFeaktuzjCv3ZUIoZWc8mTL7v+gAw==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1246,12 +1306,15 @@
         "2.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 28501,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.print/2.0.0.zip",
-          "checksum": "8da55866f4eb9875739891abd58fabe9f3baa6bebb373e3c542a3d4a4b1bb3a3",
-          "signature": "eZteTf3+9v+pdEkRt9EbJDDCwlSpLDQMiu1PzIN9xlw5HZz+usZck4k/ECxIHOH88n6Np+EoCIz6Jk2mawqSDA==",
+          "size": 42141,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.print/2.0.0.nfpkg",
+          "checksum": "b39a3ae1ccb74fbe00f064da4c0468145947afd7bd67232dd45a80cc877f2e69",
+          "signature": "c+YRGex9mrlWez67z9u1JqpU733w0ZtlDs3c71/G34a0XwABR9zTW0Z6hLxStSFR4ggVPQt/fVglFaOnjTuCBw==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "2.0.0"
@@ -1296,12 +1359,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 5506,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.scale/1.0.0.zip",
-          "checksum": "c17021994bf4704186493f650ceec79990d39d9fda570bf51ba1013611476238",
-          "signature": "o7JKOcL1lTVDyOCqHRBzVq2lUWIqHRx0uumIXFEJcaS/EXiIURgsNG3bPNNpTBG7me3mxmWR6MAktaL8h1fBCg==",
+          "size": 6594,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.scale/1.0.0.nfpkg",
+          "checksum": "595ad9a44b2cf6a8f0782067cddec52cadb9790b3797fdf26d2c27e4e62874c3",
+          "signature": "JOLECgEtUS0/b+xhtAAPfYvt2E2Qrp5g7JvvFkapdE0gkUOfhENIHpltbUXb1od62LN4dsW8p7UWmipTGW9NAg==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1346,12 +1412,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 5194,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.scanner/1.0.0.zip",
-          "checksum": "33d98e1612aab978c36110145614f94843c1602c151a893978b7fbf6442f339a",
-          "signature": "yKQ1fkF/VFBRwreohNpRSXrDk2zileHhvDZ7ritrCfI5y9thafKtIQ6VLsxlBMPzTvVkXBwkkaFJcC+xXNnWAw==",
+          "size": 6259,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.scanner/1.0.0.nfpkg",
+          "checksum": "2b1f0a7f95858c47fbea0e32ca2e3ce522d45d871af1e574148585f6b2348319",
+          "signature": "NUz25/hBpQbPHP4NU290R4Yz5ae0Td73yZQ/8hrp8PvJHhDcCKohNN6AMKk9q/C2J22YsBecgPgWYz+hn5Z5DQ==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1397,12 +1466,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 6507,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.serial/1.0.0.zip",
-          "checksum": "5b15938336ab44d0be7bc067f0da59e517d7935b02f16335cd760f8659789a16",
-          "signature": "GqA0pUVHo5KWY/v8ykkLesMqBI1h3eoLGwQaOVYd1amv5PJQ47uLmCqgfZn+hEWihrd+3wndiXeeS1i36HrsBQ==",
+          "size": 8356,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.serial/1.0.0.nfpkg",
+          "checksum": "77145e0835e5d49ba35d12288a0c882081625386831b296d3c9c49d27874ca93",
+          "signature": "R+wszuwfGQUcuAZChFkZzoGNtpTDEtm7iNqi4x635gk5oE7OgpTdTZwGkG7CQ6BifMOenykalN0mXWOC06OmAA==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1463,12 +1535,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 16796,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.simulator/1.0.0.zip",
-          "checksum": "67ef4bae954c0f6fc8243535e307eaf8fffbfad2c2c14f51cbc3d896c8d0608b",
-          "signature": "Bu91r5M72qFl310Xz8/WPexrzB1CF6w6S5gqTLix5UjlqX4Nh7BHAEA0JQMnrvRtE907YQEFbC4nYtiXbkfiDQ==",
+          "size": 19954,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.simulator/1.0.0.nfpkg",
+          "checksum": "4e9dd3033456c225bd3305f8fc6a8c18ec8f8cd96ef9bf4c889984b98c9b50d3",
+          "signature": "bgPEn6ZBCNBttpbqEmshmuM6NrUVYt9l/JLzBb3YON1IDbY3zXmTZLDhWoOGZXDElDJIDfHrnDfT2NSizZOJAQ==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1513,12 +1588,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 10460,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.socket/1.0.0.zip",
-          "checksum": "841a1a018bd53486898a05a3c57ac59f772ff0261976e4e254d6232b8dcf47b2",
-          "signature": "Y4jgBTsA+Hmvy85gjAktngR7HEHeOY/cnHZIe0Bj9l/dlF1F9zth+zXcL2F+T+YSV/4lyHf+Q+92D+btEy8iCQ==",
+          "size": 13887,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.socket/1.0.0.nfpkg",
+          "checksum": "f895c125af7a4b49db40a022b3e6e91f8ebde679b57fbfef96c0a3a859fbb490",
+          "signature": "znRI/barUrlaYy+uZPnGb5btPVhH4v/n2Jhbx6agUYidvcn/8pwHqeV+uF9Z2vkKhiMZV+bWmkdw/RFxtUzMAA==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1563,12 +1641,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 7143,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.streamer/1.0.0.zip",
-          "checksum": "c3e487b829951e1f302802811c87688dd6316dabddef8addfa52eb0491de1e43",
-          "signature": "7vPoHKUgN3ZfOpgz4tpHciAC6L+SBWMats7tnsS468oNxE7HFNAqRYkiKAhbPgCXblyY6s7bYfzGgsLbLSbVBg==",
+          "size": 8652,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.streamer/1.0.0.nfpkg",
+          "checksum": "ce64f1e0cf4b2edf5c714eccb02084ce087149c04ac52264510f8d03dd8afa1d",
+          "signature": "hUGcrFAcUUnve7I5CuhXF0sFml8xYwnQzzNlS1rrgZtmKlMBRhdPAo6YYoEUUv55v7X5c0qGLmC3Zb8BCVnCCA==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1611,12 +1692,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 4652,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.websocket/1.0.0.zip",
-          "checksum": "63890dd79cd9a3ce7f7b80cf58b771414901e698072ba4d1945ce120f621cac7",
-          "signature": "+BOjfVF1zVNSn5ArKkEj9bYkp4/ptc4Wzr6dDv8AmN1ryRpeqHlL/NYBLFJjg9RPnXD3DK48ueXgNqdeZQ/+CA==",
+          "size": 5758,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.websocket/1.0.0.nfpkg",
+          "checksum": "8e44f672c8daa22291c65c4ca01bb1416f9dee25f77156739b877a35d8b25a48",
+          "signature": "nHVA04u0xujuTbtn8ThHmvCNf44Hle0WU9rxFBKiCB1cQuyYepDkDtCkgh1B528PZ1pB1l0Mtsl/SDbEJYuPBA==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1662,12 +1746,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 7826945,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.media.go2rtc/1.0.0.zip",
-          "checksum": "703582b90e6a0812a6c5c8430aa7c1dcc412bf36e343eeaf2f9e6655a34b38c3",
-          "signature": "tHSYCj6QOTDdWflWNBo3zc5Hw/v4r9lK0GHUmsjHKguNS1U1V8z1ntO/QOxJ5hYU7c8/HazQX0YtG3BPMcVnBw==",
+          "size": 7827708,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.media.go2rtc/1.0.0.nfpkg",
+          "checksum": "3d359c3656d6c1c8e93bd506c627d466102664e2b72babd373049cc422f60b3a",
+          "signature": "UnPo42epbs/aDmkOdmtFcj5vo3vjfnIBynsSv7DDbVq7wVtFPm6kNPgrV0Qrs4qJjBsMJkelR4DVKnXZMZSFCQ==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1712,12 +1799,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 8121304,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.media.mtx/1.0.0.zip",
-          "checksum": "dfe12669b40207c1982fd5b3c451eebcb46d4436d726274738f8461a958ac67f",
-          "signature": "xlZh60EwmpAQFMLwxLf/H4qYSj1tCsCoiRQX34JFTSD7jRqtM21949jHk5bE4lvO0h/adta4857HBQkaJS+0DQ==",
+          "size": 8122320,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.media.mtx/1.0.0.nfpkg",
+          "checksum": "f3121fcff5efd96b9218f651dbbe5f876f61da3c06278501e4f58c578d0fab90",
+          "signature": "zBHv5aWjkwLHn4ev2Fe0vN3vqg1kUf6csIfaqks9OQ6nv5hzoApJe7b9oD/GvmEy2ukaAQxcP4XbtdwK4YUzCQ==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1754,12 +1844,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 2256,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.media.tts/1.0.0.zip",
-          "checksum": "fe6c3cbe2b4f01472ecc8036587238a8c979a1bb7393bdfd5d59aa3f19742a53",
-          "signature": "yYRy/ApDdbkuTgfNhlJxJUrgaNfYoKDIUP1hQNKa2xKFpbb1gGBkDLoTw542v5UfoXa1aeNak+GNYNLoLJYzCw==",
+          "size": 3382,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.media.tts/1.0.0.nfpkg",
+          "checksum": "06233a24334986ef6ae82642c235d05afdfaa451b4f1bc0b3d46fd1d33bf9022",
+          "signature": "h8Sj5Dg/c9rJ5KdpnyOatB0Tbuo/d6ZS/SQCERkMgH485SNfVqq77K0Z5HQtksT3X13DZIF4IR5KPeO9TcXXCQ==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1791,12 +1884,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 4459,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.skill.text/1.0.0.zip",
-          "checksum": "86a636dbcb7696e10f7fa15a1c0483165963e1dca245b5a0e91a9191f6ebc721",
-          "signature": "s4bb7vbct9BkmnQ76sIf+jvlgrlIrJRHHiCm8eX8DeW4Wdgk/Cd7ZDIlKzrcJGYOxWd0feEiJBawI8ftg+TGDA==",
+          "size": 4975,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.skill.text/1.0.0.nfpkg",
+          "checksum": "ba2ac6809567068079180e21383814e91dbdc23531e0dce287053a57fba403d0",
+          "signature": "pOcQvoiLHm3ob9OHiiAd7kISC1WLOJF8x7WWCQXoJshNfJ3StqbILB5wVE5zujT8bZCW9jU0S0CrbQuk6pp9Cg==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1844,12 +1940,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 8023,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.system.dbtool/1.0.0.zip",
-          "checksum": "b674d0afdefea29356371365c72424f2c1aa7d84215c96c594bce06f5b0ae432",
-          "signature": "P3D202J99NAlkGQASnksZe6g1h/s3AabUof/gajPPqYHPh9Zx5rZBNCRfT5A6M5RZkzjuVF8/J6lojIzcdzyBQ==",
+          "size": 8902,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.system.dbtool/1.0.0.nfpkg",
+          "checksum": "3b0eda37b56f5b826d4d595653d0d870e6af01032779f4ef005fd599873815ab",
+          "signature": "SEz2aXhiqSor8kPwGGRgngQXsO7YDDepWoup74HIF/677n6u6NZHY5graKys2T5S/AwyFcde73r9B5jhHgH5AQ==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"
@@ -1900,12 +1999,15 @@
         "1.0.0": {
           "minAppVersion": ">=1.0.8",
           "requiresPro": true,
-          "size": 241108,
-          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.system.win-service/1.0.0.zip",
-          "checksum": "b4ebc1e34a33067a3a1d8a140bb8d1b8ba6f4f4db3b8ff9dd2feae953bfda3bb",
-          "signature": "OLlX7Tj2TbSkS11TvfsE2sKoytX8JU47xHx1nxEPfkmCgS2AQr2Sh9PS+b89p1jIDdaHMNf69fFvp3MJUQM3CQ==",
+          "size": 243672,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.system.win-service/1.0.0.nfpkg",
+          "checksum": "81fc2718023719dae665a90d11d2b04d32bd3d1466aab4c929daf92d83154fe1",
+          "signature": "1OqnzYfsN4pjbdPkyPXc2Qx2fgABn9c+zMjFFFy3S2Mt92SvcO154YpOC1uUOMGw23MibGr2SfMNDn7AZFr2Dg==",
           "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
-          "publishedAt": "2026-08-30T03:12:32.087Z"
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-08-30T04:55:08.435Z"
         }
       },
       "latestVersion": "1.0.0"

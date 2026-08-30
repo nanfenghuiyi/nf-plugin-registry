@@ -11,16 +11,18 @@
  *
  * 流程:
  *   1. 扫描 plugins-src-dir 下所有子目录（排除 test/）
- *   2. 对每个含 manifest.json 的目录：打包 zip → 签名 → 存入 packages/<id>/<version>.zip
+ *   2. 对每个含 manifest.json 的目录：收集文件 → 混淆 JS → 打包 zip → 签名 → AES 加密 → 存入 packages/<id>/<version>.nfpkg
  *   3. 生成 registry.json
  */
 
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const JavaScriptObfuscator = require('javascript-obfuscator');
 
 const { createZip } = require('../lib/zip');
 const signLib = require('../lib/sign');
+const encryptLib = require('../lib/encrypt');
 
 // ============ 配置 ============
 
@@ -65,6 +67,33 @@ function walk(dir, base, acc) {
 
 function sha256(buf) {
   return crypto.createHash('sha256').update(buf).digest('hex');
+}
+
+/** 混淆配置：中等强度，不破坏插件执行 */
+const OBFUSCATOR_OPTIONS = {
+  controlFlowFlattening: false,
+  deadCodeInjection: false,
+  stringArray: true,
+  stringArrayEncoding: ['base64'],
+  stringArrayThreshold: 0.5,
+  rotateStringArray: true,
+  selfDefending: false,
+  disableConsoleOutput: false,
+};
+
+/**
+ * 对 JS 源码做混淆
+ * @param {string} source - 源码
+ * @returns {string} 混淆后的代码（失败时返回原文）
+ */
+function obfuscateSource(source) {
+  try {
+    const result = JavaScriptObfuscator.obfuscate(source, OBFUSCATOR_OPTIONS);
+    return result.getObfuscatedCode();
+  } catch (e) {
+    err('混淆失败: ' + e.message);
+    return source;
+  }
 }
 
 // 从 manifest 中推断出合理的分类
@@ -162,21 +191,39 @@ async function buildAll(pluginsSrcDir) {
         continue;
       }
 
+      // 对 JS 源码做混淆（替换 .js 文件内容）
+      let obfuscatedCount = 0;
+      for (const f of files) {
+        if (f.name.endsWith('.js')) {
+          const obfuscated = obfuscateSource(f.data.toString('utf8'));
+          if (obfuscated !== f.data.toString('utf8')) {
+            f.data = Buffer.from(obfuscated, 'utf8');
+            obfuscatedCount++;
+          }
+        }
+      }
+      if (obfuscatedCount > 0) {
+        log(`    🔒 混淆 ${obfuscatedCount} 个 JS 文件`);
+      }
+
       // 打包 zip
       const zipBuf = createZip(files);
       const checksum = sha256(zipBuf);
 
-      // 签名
+      // 签名（对 zip 字节）
       const sig = signLib.sign(zipBuf, privPem);
       const sigBase64 = sig.toString('base64');
 
-      // 写入 packages/<id>/<version>.zip
+      // AES-256-GCM 加密 zip 字节，输出 .nfpkg
+      const nfpkgBuf = encryptLib.encrypt(zipBuf);
+
+      // 写入 packages/<id>/<version>.nfpkg
       const pkgDir = path.join(PACKAGES_DIR, pluginId);
       fs.mkdirSync(pkgDir, { recursive: true });
-      const zipPath = path.join(pkgDir, `${version}.zip`);
-      fs.writeFileSync(zipPath, zipBuf);
+      const nfpkgPath = path.join(pkgDir, `${version}.nfpkg`);
+      fs.writeFileSync(nfpkgPath, nfpkgBuf);
 
-      // 写入 .sig 文件（base64 签名文本）
+      // 写入 .sig 文件（base64 签名文本，对 zip 的签名）
       fs.writeFileSync(path.join(pkgDir, `${version}.sig`), sigBase64, 'utf8');
 
       // 记录
@@ -281,10 +328,13 @@ async function buildAll(pluginsSrcDir) {
       minAppVersion: p.minAppVersion,
       requiresPro: p.requiresPro,
       size: p.size,
-      downloadUrl: `${DOWNLOAD_BASE}/${p.id}/${p.version}.zip`,
+      downloadUrl: `${DOWNLOAD_BASE}/${p.id}/${p.version}.nfpkg`,
       checksum: p.checksum,
       signature: p.signature,
       publicKey: p.publicKey,
+      format: 'nfpkg',
+      encrypted: true,
+      encryptionVersion: 1,
       publishedAt: new Date().toISOString(),
     };
     // 更新最新版本（按 semver 比较）
