@@ -1,0 +1,17 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+package-lock.json
+
+# 构建产物
+*.tmp
+build/
+dist/
+
+# 密钥（私钥永不入库，只提交 pub.pem）
+keys/priv.pem
+
+# 系统文件
+.DS_Store
+Thumbs.db
