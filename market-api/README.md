@@ -30,15 +30,68 @@ npm run dev                  # wrangler dev，默认 8787 端口
 curl http://127.0.0.1:8787/health
 ```
 
-## 部署（需要 Cloudflare 账号）
+## 部署 Runbook（T7）
+
+### 前置：登录 Cloudflare（交互式，仅本机一次）
 
 ```bash
-npx wrangler d1 create nf-market-stats          # 输出的 database_id 填入 wrangler.toml
+cd market-api
+npx wrangler login           # 浏览器 OAuth 授权
+npx wrangler whoami          # 确认已登录
+```
+
+### 步骤 1：创建 D1 并回填 database_id
+
+```bash
+npx wrangler d1 create nf-market-stats
+```
+
+把输出中的 `database_id` 填入 `wrangler.toml` 的 `[[d1_databases]]`（替换 `REPLACE_WITH_REAL_D1_DATABASE_ID`）。
+
+### 步骤 2：应用远程迁移
+
+```bash
 npx wrangler d1 migrations apply DB --remote
+```
+
+### 步骤 3：部署
+
+```bash
 npx wrangler deploy
 ```
 
-CI 部署（可选）：在 GitHub 仓库 secrets 配置 `CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID` 后添加 wrangler-action 工作流。
+输出实际地址，形如 `https://nf-market-api.<你的子域>.workers.dev`。
+
+### 步骤 4：线上验证
+
+```bash
+BASE=https://nf-market-api.<你的子域>.workers.dev
+curl $BASE/health
+curl "$BASE/api/plugins?keyword=OCR"
+curl -I "$BASE/api/download?id=nf.app.ocr&version=1.0.0"   # 期望 302
+curl $BASE/api/stats
+```
+
+### 步骤 5：客户端指向实际域名
+
+把 `electron-egg-demo/electron/controller/pluginMarket.ts` 中的
+`DEFAULT_MARKET_URL` 替换为步骤 3 输出的实际域名（`NF_MARKET_URL` 环境变量可随时覆盖）。
+
+### CI 自动部署（可选）
+
+1. GitHub 仓库 Settings → Secrets and variables → Actions 添加：
+   - `CLOUDFLARE_API_TOKEN`：Dashboard → My Profile → API Tokens → Create Token →
+     选 **Edit Cloudflare Workers** 模板，并追加 **D1: Edit** 权限
+   - `CLOUDFLARE_ACCOUNT_ID`：Dashboard 首页右侧 Account ID
+2. `.github/workflows/deploy-api.yml` 已就位：`market-api/**` 变更 push 到 main 即自动执行
+   迁移 + 部署，也支持手动触发（workflow_dispatch）。
+
+### 注意事项
+
+- Workers 拉取的是 **GitHub 上的 registry.json**：先 git push registry 仓库（含分类归一化结果），
+  线上 API 才返回 16 类数据；发布新插件后最长 5 分钟可见（内存缓存 TTL）。
+- 免费额度：Workers 10 万请求/天，D1 写 10 万行/天 / 读 500 万行/天，速率限制 binding 免费。
+- 回滚：`npx wrangler rollback`；删除：`npx wrangler delete`（D1 数据需单独删库）。
 
 ## 绑定
 

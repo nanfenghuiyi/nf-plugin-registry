@@ -19,8 +19,8 @@ REGISTRY_CACHE_TTL_SECONDS = "300"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "nf-market-stats"
-database_id = "REPLACE_WITH_REAL_D1_DATABASE_ID" # 本地 dev 走模拟数据库，不校验此 ID
+database_name = "plugin-registry"
+database_id = "b5dc90bd-de74-415b-ba39-29d81bb4f148"
 migrations_dir = "migrations"
 
 # 速率限制 binding（open beta）：/api/* 全局 100 次/分/IP

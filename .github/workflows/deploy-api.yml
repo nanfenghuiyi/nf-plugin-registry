@@ -1,0 +1,32 @@
+# NF Client 插件市场 API 自动部署（T7）
+# 前置：仓库 Secrets 需配置 CLOUDFLARE_API_TOKEN 与 CLOUDFLARE_ACCOUNT_ID
+name: Deploy Market API
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'market-api/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Apply D1 migrations (remote)
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: market-api
+          command: d1 migrations apply DB --remote
+
+      - name: Deploy Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: market-api
+          command: deploy
