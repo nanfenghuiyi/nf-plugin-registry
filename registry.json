@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-10T03:57:19.418Z",
+  "updatedAt": "2026-10-10T07:27:34.781Z",
   "totalPlugins": 34,
   "categories": {
     "admin": {
@@ -1554,9 +1554,22 @@
           "encrypted": true,
           "encryptionVersion": 1,
           "publishedAt": "2026-08-30T04:55:08.435Z"
+        },
+        "1.0.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 24187,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.simulator/1.0.1.nfpkg",
+          "checksum": "c0e9dc7a81f2be9af6a88f11a58924313cf068fef63495dce645b5855dd6d232",
+          "signature": "LM5e5xYbp968znLx2orXAeQHOAkPD3sRSM+IuQuQ4S16xUnOta4Gib95iHWGiKkFWG+VSVpor8QrbSUUaYNhAQ==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-10T07:27:34.781Z"
         }
       },
-      "latestVersion": "1.0.0"
+      "latestVersion": "1.0.1"
     },
     {
       "id": "nf.hardware.socket",
