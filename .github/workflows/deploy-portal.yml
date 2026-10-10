@@ -1,0 +1,30 @@
+# NF Client 插件市场 — 开发者门户（Cloudflare Pages）自动部署（阶段 3 / T9）
+#
+# 前置（一次性，Cloudflare 控制台或 CLI）：
+#   1. 创建 Pages 项目，名称固定为 nf-plugin-portal（本工作流 --project-name 与之对应）
+#   2. 生产分支设为 main（门户为纯静态产物：index.html + app.js + style.css）
+#   3. 门户默认 API 地址已硬编码为 https://registry.htnf.dpdns.org，
+#      如需自定义可在门户页「API 地址」输入框覆盖（仅本地浏览器记住）
+#
+# 说明：门户本身不含机密，仅需 CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID（与 API 部署复用同一组 Secret）。
+name: Deploy Market Portal
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'portal/**'
+  workflow_dispatch:
+
+jobs:
+  deploy-portal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy Portal (Pages)
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy portal --project-name nf-plugin-portal --commit-dirty=true

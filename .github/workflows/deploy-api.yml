@@ -1,5 +1,13 @@
-# NF Client 插件市场 API 自动部署（T7）
-# 前置：仓库 Secrets 需配置 CLOUDFLARE_API_TOKEN 与 CLOUDFLARE_ACCOUNT_ID
+# NF Client 插件市场 API 自动部署（阶段 2 / 阶段 3）
+# 前置（仓库 Secrets）：
+#   - CLOUDFLARE_API_TOKEN、CLOUDFLARE_ACCOUNT_ID：部署 Worker + 应用 D1 迁移
+# 前置（Worker 运行时 Secret，需 `npx wrangler secret put` 配置，勿入仓库）：
+#   - GH_CLIENT_SECRET：GitHub OAuth App 客户端密钥
+#   - COOKIE_SECRET：会话 cookie 签名密钥（HMAC）
+# 说明：阶段 3 采用「两段式发布」，审批通过后的 registry 合入由核心成员本地
+#       `nf-plugin-cli release --drain` 完成（根私钥不上云），Worker 本身不需要 GITHUB_PAT。
+#       wrangler.toml 中的非敏感 vars（GH_CLIENT_ID / ADMIN_GITHUB_LOGINS / PORTAL_ORIGIN 等）
+#       部署后请在 Cloudflare 控制台回填真实值。
 name: Deploy Market API
 
 on:

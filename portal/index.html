@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NF Client 开发者门户</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">NF</span>
+      <span class="brand-name">开发者门户</span>
+    </div>
+
+    <nav class="nav" id="nav">
+      <a href="#/" data-route="home">插件市场</a>
+      <a href="#/mine" data-route="mine">我的提交</a>
+      <a href="#/tokens" data-route="tokens">发布令牌</a>
+      <a href="#/admin" data-route="admin" id="nav-admin" hidden>审批台</a>
+    </nav>
+
+    <div class="account">
+      <span id="who" class="who">未登录</span>
+      <button id="btn-login" class="btn btn-primary" hidden>用 GitHub 登录</button>
+      <button id="btn-logout" class="btn" hidden>登出</button>
+    </div>
+  </header>
+
+  <div id="banner" class="banner" hidden></div>
+
+  <main id="app" class="container"></main>
+
+  <footer class="footer">
+    <span>NF Client 插件市场 · 阶段 3 开发者门户</span>
+    <span class="api-config">
+      <label for="api-base">API 地址</label>
+      <input id="api-base" type="url" spellcheck="false" placeholder="https://registry.htnf.dpdns.org">
+      <button id="btn-save-api" class="btn btn-sm">保存</button>
+    </span>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

@@ -17,6 +17,20 @@ GITHUB_BRANCH = "main"
 # registry.json isolate 内存缓存 TTL（秒）
 REGISTRY_CACHE_TTL_SECONDS = "300"
 
+# ---- 阶段 3（开发者门户）vars：非敏感项；secrets 用 `npx wrangler secret put` 配置 ----
+GH_CLIENT_ID = ""
+ADMIN_GITHUB_LOGINS = ""
+# 门户 Pages 域名（部署后回填；CORS 凭据白名单 + 登录回跳）
+PORTAL_ORIGIN = ""
+# 客户端 OAuth 深链回调
+CLIENT_DEEP_LINK = "nf-client://auth/callback"
+# secrets（不在本文件）：GH_CLIENT_SECRET / COOKIE_SECRET
+
+# 待发布包体存储（publish 上传的 zip，≤20MB；KV 免费额度）
+[[kv_namespaces]]
+binding = "KV"
+id = "195de33e48e244d9b19ecb1644c56f1e"
+
 [[d1_databases]]
 binding = "DB"
 database_name = "plugin-registry"

@@ -1,4 +1,5 @@
 import type { MarketItem, RegistryPlugin, RegistryVersion } from './types';
+import type { RatingAgg } from './reviews.ts';
 
 /** semver 三段比较（与 tools/plugin-market/server.js 一致） */
 export function semverCmp(a: string, b: string): number {
@@ -20,9 +21,16 @@ export function latestVersionOf(p: RegistryPlugin): string {
 
 /**
  * registry 插件条目 → 前端 PluginMarketItem
- * downloadUrl 恒为市场 API 绝对地址（/api/download 302 分发），客户端跟随重定向即可
+ * downloadUrl 恒为市场 API 绝对地址（/api/download 由 Worker 回源代理流式返回包体）
+ *
+ * @param rating 评分聚合（阶段 3：由 reviews 表批量查询回填；缺省为 0）
  */
-export function toItem(p: RegistryPlugin, origin: string, downloads: number): MarketItem {
+export function toItem(
+  p: RegistryPlugin,
+  origin: string,
+  downloads: number,
+  rating?: RatingAgg,
+): MarketItem {
   const versions = p.versions || {};
   const latestVer = latestVersionOf(p);
   const latest: RegistryVersion = versions[latestVer] || {};
@@ -42,7 +50,8 @@ export function toItem(p: RegistryPlugin, origin: string, downloads: number): Ma
     type: p.type || 'app',
     category: p.category || 'tool',
     downloads,
-    rating: 0,
+    rating: rating?.avg ?? 0,
+    ratingCount: rating?.count ?? 0,
     latestVersion: latestVer,
     changelog: latest.changelog || '初始版本发布',
     dependencies: [],
@@ -57,5 +66,7 @@ export function toItem(p: RegistryPlugin, origin: string, downloads: number): Ma
     signature: latest.signature || '',
     publicKey: latest.publicKey || '',
     downloadUrl: `${origin}/api/download?id=${encodeURIComponent(p.id)}&version=${encodeURIComponent(latestVer)}`,
+    paid: !!p.paid,
+    pricing: p.pricing || null,
   };
 }
