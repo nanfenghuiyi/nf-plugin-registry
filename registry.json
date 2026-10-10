@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-30T07:10:29.018Z",
+  "updatedAt": "2026-10-10T03:57:19.418Z",
   "totalPlugins": 34,
   "categories": {
     "admin": {
@@ -355,7 +355,8 @@
         "shortcut:register",
         "window:manage",
         "tray:menu",
-        "system:globalInput"
+        "system:globalInput",
+        "job:exec"
       ],
       "engines": {
         "nf-client": ">=1.0.8"
@@ -394,9 +395,22 @@
           "encrypted": true,
           "encryptionVersion": 1,
           "publishedAt": "2026-08-30T04:55:08.435Z"
+        },
+        "1.0.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 18458862,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.live2d-pet/1.0.1.nfpkg",
+          "checksum": "803eaf30d7ce7f40207ff6efbbb851247b4ba20e6051d5c6a4ba5f74f6bfa944",
+          "signature": "r5CODOv3ssMYVIQMgMomS2FB4pabLrIQa8gb8NjoJcLCXjKxSYvmCDHQpDWRKS7uNc7dv0mXb31hWWlKXPj+Aw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-10T03:57:19.405Z"
         }
       },
-      "latestVersion": "1.0.0"
+      "latestVersion": "1.0.1"
     },
     {
       "id": "nf.app.local-search",
