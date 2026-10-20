@@ -5,6 +5,7 @@
   "description": "NF Client 插件注册表构建工具",
   "scripts": {
     "build": "node scripts/build-all.js",
+    "build:inc": "node scripts/build-incremental.js",
     "release": "git push origin main && git push gitee main",
     "test": "node --test \"publish/test/*.test.js\" \"market-api/test/*.test.mjs\" \"portal/test/*.test.js\"",
     "typecheck": "node market-api/node_modules/typescript/bin/tsc --noEmit -p market-api/tsconfig.json"

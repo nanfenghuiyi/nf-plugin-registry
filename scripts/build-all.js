@@ -13,6 +13,8 @@
  *   1. 扫描 plugins-src-dir 下所有子目录（排除 test/）
  *   2. 对每个含 manifest.json 的目录：收集文件 → 混淆 JS → 打包 zip → 签名 → AES 加密 → 存入 packages/<id>/<version>.nfpkg
  *   3. 生成 registry.json
+ *
+ * 本文件同时作为公共构建库，供 build-incremental.js 复用。
  */
 
 const fs = require('fs');
@@ -39,6 +41,32 @@ const GITHUB_OWNER = 'nanfenghuiyi';
 const GITHUB_REPO = 'nf-plugin-registry';
 const GITHUB_BRANCH = 'main';
 const DOWNLOAD_BASE = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/packages`;
+
+// 分类名称映射
+const categoryNames = {
+  'app': '应用',
+  'application': '应用',
+  'tool': '工具',
+  'admin': '管理后台',
+  'hardware': '硬件',
+  'device': '设备',
+  'camera': '摄像头',
+  'media': '媒体',
+  'streamer': '流媒体',
+  'system': '系统',
+  'extension': '扩展',
+  'developer': '开发者',
+  'service': '服务',
+  'gateway': '网关',
+  'serial': '串口',
+  'socket': 'Socket',
+  'websocket': 'WebSocket',
+  'print': '打印',
+  'scale': '电子秤',
+  'scanner': '扫描器',
+  'skill': '技能',
+  'other': '其他',
+};
 
 // ============ 工具函数 ============
 
@@ -116,7 +144,143 @@ function inferCategory(manifest) {
   return typeMap[manifest.type] || 'other';
 }
 
-// ============ 主流程 ============
+function compareVersions(a, b) {
+  const pa = a.split('.').map(Number);
+  const pb = b.split('.').map(Number);
+  for (let i = 0; i < 3; i++) {
+    if ((pa[i] || 0) > (pb[i] || 0)) return 1;
+    if ((pa[i] || 0) < (pb[i] || 0)) return -1;
+  }
+  return 0;
+}
+
+// ============ 扫描与构建 ============
+
+/**
+ * 扫描插件源码目录，返回所有含 manifest.json 的插件目录
+ * @param {string} pluginsSrcDir - 插件源码根目录（下按类型分子目录）
+ * @returns {Array<{type: string, id: string, manifestPath: string, dir: string}>}
+ */
+function scanPluginDirs(pluginsSrcDir) {
+  const pluginDirs = [];
+  const entries = fs.readdirSync(pluginsSrcDir, { withFileTypes: true });
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue;
+    if (entry.name === 'test' || entry.name === 'skills' || entry.name === 'config') continue;
+    // 排除 test. 开头的目录
+    if (entry.name.startsWith('test.')) continue;
+
+    const typeDir = path.join(pluginsSrcDir, entry.name);
+    const subEntries = fs.readdirSync(typeDir, { withFileTypes: true });
+    for (const sub of subEntries) {
+      if (!sub.isDirectory()) continue;
+      const manifestPath = path.join(typeDir, sub.name, 'manifest.json');
+      if (fs.existsSync(manifestPath)) {
+        pluginDirs.push({ type: entry.name, id: sub.name, manifestPath, dir: path.join(typeDir, sub.name) });
+      } else {
+        log(`  ⚠ 跳过 ${entry.name}/${sub.name}: 无 manifest.json`);
+      }
+    }
+  }
+  return pluginDirs;
+}
+
+/**
+ * 构建单个插件：收集文件 → 混淆 → 打包 → 签名 → 加密 → 写入 packages/
+ * @param {{type: string, id: string, manifestPath: string, dir: string}} p - 插件目录信息
+ * @param {string} privPem - 私钥
+ * @param {string} pubPem - 公钥
+ * @returns {object|null} registry 记录（无文件时返回 null）
+ * @throws {Error} 打包失败时抛出异常
+ */
+function buildPlugin(p, privPem, pubPem) {
+  const manifest = JSON.parse(fs.readFileSync(p.manifestPath, 'utf8'));
+  const pluginId = manifest.id;
+  const version = manifest.version;
+  const name = manifest.name;
+  const description = manifest.description || '';
+  const author = manifest.author || 'NF Team';
+  const homepage = manifest.homepage || '';
+  const icon = manifest.icon || '';
+  const type = manifest.type || 'unknown';
+  const category = inferCategory(manifest);
+  const minAppVersion = manifest.engines && manifest.engines['nf-client']
+    ? manifest.engines['nf-client']
+    : '>=1.0.8';
+  const requiresPro = manifest.exemptFromLimit !== true;
+
+  // 收集文件
+  const files = [];
+  walk(p.dir, p.dir, files);
+  if (files.length === 0) {
+    log(`    ⚠ 跳过 ${pluginId}@${version}：无文件`);
+    return null;
+  }
+
+  // 对 JS 源码做混淆（替换 .js 文件内容）
+  let obfuscatedCount = 0;
+  for (const f of files) {
+    if (f.name.endsWith('.js')) {
+      const obfuscated = obfuscateSource(f.data.toString('utf8'));
+      if (obfuscated !== f.data.toString('utf8')) {
+        f.data = Buffer.from(obfuscated, 'utf8');
+        obfuscatedCount++;
+      }
+    }
+  }
+  if (obfuscatedCount > 0) {
+    log(`    🔒 混淆 ${obfuscatedCount} 个 JS 文件`);
+  }
+
+  // 打包 zip
+  const zipBuf = createZip(files);
+  const checksum = sha256(zipBuf);
+
+  // 签名（对 zip 字节）
+  const sig = signLib.sign(zipBuf, privPem);
+  const sigBase64 = sig.toString('base64');
+
+  // AES-256-GCM 加密 zip 字节，输出 .nfpkg
+  const nfpkgBuf = encryptLib.encrypt(zipBuf);
+
+  // 写入 packages/<id>/<version>.nfpkg
+  const pkgDir = path.join(PACKAGES_DIR, pluginId);
+  fs.mkdirSync(pkgDir, { recursive: true });
+  const nfpkgPath = path.join(pkgDir, `${version}.nfpkg`);
+  fs.writeFileSync(nfpkgPath, nfpkgBuf);
+
+  // 写入 .sig 文件（base64 签名文本，对 zip 的签名）
+  fs.writeFileSync(path.join(pkgDir, `${version}.sig`), sigBase64, 'utf8');
+
+  log(`  ✅ ${pluginId}@${version} (${zipBuf.length} bytes, checksum: ${checksum.slice(0, 8)}...)`);
+
+  return {
+    id: pluginId,
+    name,
+    description,
+    category,
+    type,
+    author,
+    icon,
+    homepage,
+    version,
+    checksum,
+    signature: sigBase64,
+    publicKey: pubPem,
+    minAppVersion,
+    requiresPro,
+    size: zipBuf.length,
+    keywords: manifest.keywords || [],
+    permissions: manifest.permissions || [],
+    engines: manifest.engines || {},
+    limits: manifest.limits || {},
+    entrypoints: manifest.entrypoints || {},
+    ui: manifest.ui || {},
+    main: manifest.main || '',
+  };
+}
+
+// ============ 全量构建 ============
 
 async function buildAll(pluginsSrcDir) {
   if (!fs.existsSync(pluginsSrcDir)) {
@@ -136,24 +300,7 @@ async function buildAll(pluginsSrcDir) {
   const pubPem = fs.readFileSync(pub, 'utf8');
 
   // 2. 扫描所有插件目录
-  const pluginDirs = [];
-  const entries = fs.readdirSync(pluginsSrcDir, { withFileTypes: true });
-  for (const entry of entries) {
-    if (!entry.isDirectory()) continue;
-    if (entry.name === 'test' || entry.name === 'test' || entry.name === 'skills' || entry.name === 'config') continue;
-    // 排除 test. 开头的目录
-    if (entry.name.startsWith('test.')) continue;
-
-    const typeDir = path.join(pluginsSrcDir, entry.name);
-    const subEntries = fs.readdirSync(typeDir, { withFileTypes: true });
-    for (const sub of subEntries) {
-      if (!sub.isDirectory()) continue;
-      const manifestPath = path.join(typeDir, sub.name, 'manifest.json');
-      if (fs.existsSync(manifestPath)) {
-        pluginDirs.push({ type: entry.name, id: sub.name, manifestPath, dir: path.join(typeDir, sub.name) });
-      }
-    }
-  }
+  const pluginDirs = scanPluginDirs(pluginsSrcDir);
 
   log(`📦 发现 ${pluginDirs.length} 个插件目录`);
   if (pluginDirs.length === 0) {
@@ -168,92 +315,10 @@ async function buildAll(pluginsSrcDir) {
 
   for (const p of pluginDirs) {
     try {
-      const manifest = JSON.parse(fs.readFileSync(p.manifestPath, 'utf8'));
-      const pluginId = manifest.id;
-      const version = manifest.version;
-      const name = manifest.name;
-      const description = manifest.description || '';
-      const author = manifest.author || 'NF Team';
-      const homepage = manifest.homepage || '';
-      const icon = manifest.icon || '';
-      const type = manifest.type || 'unknown';
-      const category = inferCategory(manifest);
-      const minAppVersion = manifest.engines && manifest.engines['nf-client']
-        ? manifest.engines['nf-client']
-        : '>=1.0.8';
-      const requiresPro = manifest.exemptFromLimit !== true;
-
-      // 收集文件
-      const files = [];
-      walk(p.dir, p.dir, files);
-      if (files.length === 0) {
-        log(`    ⚠ 跳过 ${pluginId}@${version}：无文件`);
-        continue;
-      }
-
-      // 对 JS 源码做混淆（替换 .js 文件内容）
-      let obfuscatedCount = 0;
-      for (const f of files) {
-        if (f.name.endsWith('.js')) {
-          const obfuscated = obfuscateSource(f.data.toString('utf8'));
-          if (obfuscated !== f.data.toString('utf8')) {
-            f.data = Buffer.from(obfuscated, 'utf8');
-            obfuscatedCount++;
-          }
-        }
-      }
-      if (obfuscatedCount > 0) {
-        log(`    🔒 混淆 ${obfuscatedCount} 个 JS 文件`);
-      }
-
-      // 打包 zip
-      const zipBuf = createZip(files);
-      const checksum = sha256(zipBuf);
-
-      // 签名（对 zip 字节）
-      const sig = signLib.sign(zipBuf, privPem);
-      const sigBase64 = sig.toString('base64');
-
-      // AES-256-GCM 加密 zip 字节，输出 .nfpkg
-      const nfpkgBuf = encryptLib.encrypt(zipBuf);
-
-      // 写入 packages/<id>/<version>.nfpkg
-      const pkgDir = path.join(PACKAGES_DIR, pluginId);
-      fs.mkdirSync(pkgDir, { recursive: true });
-      const nfpkgPath = path.join(pkgDir, `${version}.nfpkg`);
-      fs.writeFileSync(nfpkgPath, nfpkgBuf);
-
-      // 写入 .sig 文件（base64 签名文本，对 zip 的签名）
-      fs.writeFileSync(path.join(pkgDir, `${version}.sig`), sigBase64, 'utf8');
-
-      // 记录
-      registryPlugins.push({
-        id: pluginId,
-        name,
-        description,
-        category,
-        type,
-        author,
-        icon,
-        homepage,
-        version,
-        checksum,
-        signature: sigBase64,
-        publicKey: pubPem,
-        minAppVersion,
-        requiresPro,
-        size: zipBuf.length,
-        keywords: manifest.keywords || [],
-        permissions: manifest.permissions || [],
-        engines: manifest.engines || {},
-        limits: manifest.limits || {},
-        entrypoints: manifest.entrypoints || {},
-        ui: manifest.ui || {},
-        main: manifest.main || '',
-      });
-
+      const record = buildPlugin(p, privPem, pubPem);
+      if (!record) continue;
+      registryPlugins.push(record);
       totalSuccess++;
-      log(`  ✅ ${pluginId}@${version} (${zipBuf.length} bytes, checksum: ${checksum.slice(0, 8)}...)`);
     } catch (e) {
       totalFail++;
       err(`  ❌ ${p.id} 打包失败: ${e.message}`);
@@ -267,31 +332,6 @@ async function buildAll(pluginsSrcDir) {
 
   // 分类统计
   const categories = {};
-  const categoryNames = {
-    'app': '应用',
-    'application': '应用',
-    'tool': '工具',
-    'admin': '管理后台',
-    'hardware': '硬件',
-    'device': '设备',
-    'camera': '摄像头',
-    'media': '媒体',
-    'streamer': '流媒体',
-    'system': '系统',
-    'extension': '扩展',
-    'developer': '开发者',
-    'service': '服务',
-    'gateway': '网关',
-    'serial': '串口',
-    'socket': 'Socket',
-    'websocket': 'WebSocket',
-    'print': '打印',
-    'scale': '电子秤',
-    'scanner': '扫描器',
-    'skill': '技能',
-    'other': '其他',
-  };
-
   for (const p of registryPlugins) {
     if (!categories[p.category]) {
       categories[p.category] = { name: categoryNames[p.category] || p.category, count: 0 };
@@ -364,29 +404,40 @@ async function buildAll(pluginsSrcDir) {
   log(`  密钥: ${KEYS_DIR}`);
 }
 
-function compareVersions(a, b) {
-  const pa = a.split('.').map(Number);
-  const pb = b.split('.').map(Number);
-  for (let i = 0; i < 3; i++) {
-    if ((pa[i] || 0) > (pb[i] || 0)) return 1;
-    if ((pa[i] || 0) < (pb[i] || 0)) return -1;
-  }
-  return 0;
-}
+// ============ 导出（供增量构建复用） ============
+
+module.exports = {
+  REGISTRY_DIR,
+  PACKAGES_DIR,
+  KEYS_DIR,
+  REGISTRY_PATH,
+  DOWNLOAD_BASE,
+  categoryNames,
+  log,
+  err,
+  walk,
+  sha256,
+  inferCategory,
+  compareVersions,
+  scanPluginDirs,
+  buildPlugin,
+};
 
 // ============ 执行 ============
 
-const pluginsSrc = process.argv[2];
-if (!pluginsSrc) {
-  err('用法: node scripts/build-all.js <plugins-src-dir>');
-  log('\n示例:');
-  log('  node scripts/build-all.js d:/Workspace/Projects/Personal/electron/electron-egg-demo/plugins');
-  process.exit(1);
-}
-
-buildAll(path.resolve(pluginsSrc))
-  .then(() => process.exit(0))
-  .catch((e) => {
-    console.error(e);
+if (require.main === module) {
+  const pluginsSrc = process.argv[2];
+  if (!pluginsSrc) {
+    err('用法: node scripts/build-all.js <plugins-src-dir>');
+    log('\n示例:');
+    log('  node scripts/build-all.js d:/Workspace/Projects/Personal/electron/electron-egg-demo/plugins');
     process.exit(1);
-  });
+  }
+
+  buildAll(path.resolve(pluginsSrc))
+    .then(() => process.exit(0))
+    .catch((e) => {
+      console.error(e);
+      process.exit(1);
+    });
+}
