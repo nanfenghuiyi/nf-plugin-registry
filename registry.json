@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-20T02:41:16.548Z",
+  "updatedAt": "2026-10-20T09:29:52.359Z",
   "totalPlugins": 38,
   "categories": {
     "admin": {
@@ -25,6 +25,10 @@
     },
     "developer": {
       "name": "开发者",
+      "count": 1
+    },
+    "gateway": {
+      "name": "网关",
       "count": 1
     },
     "socket": {
@@ -57,10 +61,6 @@
     },
     "media": {
       "name": "媒体",
-      "count": 1
-    },
-    "gateway": {
-      "name": "网关",
       "count": 1
     },
     "工具": {
@@ -608,7 +608,13 @@
         "main": "index.js",
         "renderer": "renderer/dist/index.html"
       },
-      "ui": {},
+      "ui": {
+        "width": 1200,
+        "height": 780,
+        "minWidth": 960,
+        "minHeight": 600,
+        "csp": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https: nfasset:; media-src 'self' data: blob: nfasset:; font-src 'self' data: blob: nfasset:; frame-src 'self' data: blob: nfasset:; worker-src 'self' blob:; connect-src 'self' http://127.0.0.1:* http://localhost:* https://127.0.0.1:* https://localhost:* ws://127.0.0.1:* ws://localhost:* wss://127.0.0.1:* wss://localhost:* nfasset:; object-src 'none'; base-uri 'self'"
+      },
       "main": "index.js",
       "versions": {
         "1.0.1": {
@@ -623,9 +629,22 @@
           "encrypted": true,
           "encryptionVersion": 1,
           "publishedAt": "2026-10-20T02:41:16.539Z"
+        },
+        "1.0.3": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 4102353,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.nfprint/1.0.3.nfpkg",
+          "checksum": "b70cd40c92ee1265ab05d006181be3ecbd3f63d29cfdf75eb58e490c5efbcdc1",
+          "signature": "fA54/lAa+Uacm8cl5rIGFq70hrc0/UiM7MdvNQ565EtsDwu35uHO42DYEMq4Q1zjtQg46TIBm+G2xmt3VV6qDw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T09:29:52.359Z"
         }
       },
-      "latestVersion": "1.0.1"
+      "latestVersion": "1.0.3"
     },
     {
       "id": "nf.app.ocr",
