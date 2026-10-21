@@ -20,6 +20,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { execFileSync } = require('child_process');
 const JavaScriptObfuscator = require('javascript-obfuscator');
 
 const { createZip } = require('../lib/zip');
@@ -35,7 +36,11 @@ const KEYS_DIR = path.join(REGISTRY_DIR, 'keys');
 const REGISTRY_PATH = path.join(REGISTRY_DIR, 'registry.json');
 
 // 打包时排除的目录/文件
-const EXCLUDE = new Set(['node_modules', '.git', '.DS_Store', 'package-lock.json']);
+// 注意：node_modules 必须随包分发（宿主不提供依赖回落），构建前会自动安装生产依赖
+const EXCLUDE = new Set(['.git', '.DS_Store', 'package-lock.json']);
+
+// 依赖目录不参与混淆（第三方库自身已压缩/混淆，再混淆会破坏其内部 require 与性能）
+const NO_OBFUSCATE_PREFIX = 'node_modules/';
 
 // 插件图标候选文件名：.nfpkg 整体加密，市场端无法解包取图标，
 // 构建时把图标以明文复制到 packages/<id>/ 供市场 API 分发
@@ -100,6 +105,39 @@ function walk(dir, base, acc) {
 
 function sha256(buf) {
   return crypto.createHash('sha256').update(buf).digest('hex');
+}
+
+/**
+ * 确保插件生产依赖已安装到 <pluginDir>/node_modules。
+ * 宿主只从插件目录解析裸模块，因此依赖必须随包分发。
+ * @param {string} pluginDir - 插件源码目录
+ */
+function ensureDependencies(pluginDir) {
+  const pkgPath = path.join(pluginDir, 'package.json');
+  if (!fs.existsSync(pkgPath)) return;
+
+  let deps = {};
+  try {
+    deps = JSON.parse(fs.readFileSync(pkgPath, 'utf8')).dependencies || {};
+  } catch (e) {
+    err(`  ${path.basename(pluginDir)}: package.json 解析失败，跳过依赖安装 (${e.message})`);
+    return;
+  }
+
+  const names = Object.keys(deps);
+  if (names.length === 0) return;
+
+  // 每次都执行 npm install：既补齐缺失依赖，也按 package.json 清理已移除的依赖
+  log(`    📥 安装生产依赖: ${names.join(', ')}`);
+  try {
+    execFileSync('npm', ['install', '--omit=dev', '--no-audit', '--no-fund'], {
+      cwd: pluginDir,
+      stdio: 'inherit',
+      shell: true,
+    });
+  } catch (e) {
+    throw new Error(`依赖安装失败: ${e.message}`);
+  }
 }
 
 /** 混淆配置：中等强度，不破坏插件执行 */
@@ -235,6 +273,9 @@ function buildPlugin(p, privPem, pubPem) {
     : '>=1.0.8';
   const requiresPro = manifest.exemptFromLimit !== true;
 
+  // 安装生产依赖（随包分发，宿主不做应用级模块回落）
+  ensureDependencies(p.dir);
+
   // 收集文件
   const files = [];
   walk(p.dir, p.dir, files);
@@ -243,10 +284,10 @@ function buildPlugin(p, privPem, pubPem) {
     return null;
   }
 
-  // 对 JS 源码做混淆（替换 .js 文件内容）
+  // 对插件自身 JS 做混淆（替换 .js 文件内容；node_modules 保持原样）
   let obfuscatedCount = 0;
   for (const f of files) {
-    if (f.name.endsWith('.js')) {
+    if (f.name.endsWith('.js') && !f.name.startsWith(NO_OBFUSCATE_PREFIX)) {
       const obfuscated = obfuscateSource(f.data.toString('utf8'));
       if (obfuscated !== f.data.toString('utf8')) {
         f.data = Buffer.from(obfuscated, 'utf8');

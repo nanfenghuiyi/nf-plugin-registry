@@ -78,7 +78,8 @@ const REGISTRY_SIG_PATH = registrySig.registrySigPath(REGISTRY_DIR);
 /** 门户默认地址（阶段 2 Workers；可用 --server / NF_MARKET_URL 覆盖） */
 const DEFAULT_PORTAL_URL = 'https://registry.htnf.dpdns.org';
 
-const EXCLUDE = new Set(['node_modules', '.git', '.DS_Store', 'package-lock.json']);
+// 注意：node_modules 必须随包分发（宿主不提供依赖回落），发布前会自动安装生产依赖
+const EXCLUDE = new Set(['.git', '.DS_Store', 'package-lock.json']);
 
 const GITHUB_OWNER = 'nanfenghuiyi';
 const GITHUB_REPO = 'nf-plugin-registry';
@@ -107,6 +108,39 @@ function walk(dir, base, acc) {
 
 function sha256(buf) {
   return crypto.createHash('sha256').update(buf).digest('hex');
+}
+
+/**
+ * 确保插件生产依赖已安装到 <pluginDir>/node_modules。
+ * 宿主只从插件目录解析裸模块，因此依赖必须随包分发。
+ * @param {string} pluginDir - 插件源码目录
+ */
+function ensureDependencies(pluginDir) {
+  const pkgPath = path.join(pluginDir, 'package.json');
+  if (!fs.existsSync(pkgPath)) return;
+
+  let deps = {};
+  try {
+    deps = JSON.parse(fs.readFileSync(pkgPath, 'utf8')).dependencies || {};
+  } catch (e) {
+    err(`package.json 解析失败，跳过依赖安装: ${e.message}`);
+    return;
+  }
+
+  const names = Object.keys(deps);
+  if (names.length === 0) return;
+
+  // 每次都执行 npm install：既补齐缺失依赖，也按 package.json 清理已移除的依赖
+  log(`   安装生产依赖: ${names.join(', ')}`);
+  try {
+    execSync('npm install --omit=dev --no-audit --no-fund', {
+      cwd: pluginDir,
+      stdio: 'inherit',
+    });
+  } catch (e) {
+    err(`依赖安装失败: ${e.message}`);
+    throw e;
+  }
 }
 
 /**
@@ -255,8 +289,9 @@ async function cmdPublish(argv) {
 
   log(`📦 发布插件: ${pluginId}@${version}`);
 
-  // 1. 打包
+  // 1. 打包（先补齐生产依赖，依赖随包分发）
   log('   打包中...');
+  ensureDependencies(pluginDir);
   const files = [];
   walk(pluginDir, pluginDir, files);
   if (files.length === 0) {
