@@ -36,6 +36,10 @@ const REGISTRY_PATH = path.join(REGISTRY_DIR, 'registry.json');
 // 打包时排除的目录/文件
 const EXCLUDE = new Set(['node_modules', '.git', '.DS_Store', 'package-lock.json']);
 
+// 插件图标候选文件名：.nfpkg 整体加密，市场端无法解包取图标，
+// 构建时把图标以明文复制到 packages/<id>/ 供市场 API 分发
+const ICON_FILE_CANDIDATES = ['icon.svg', 'icon.png', 'icon.webp', 'icon.jpg', 'icon.jpeg'];
+
 // GitHub 仓库信息
 const GITHUB_OWNER = 'nanfenghuiyi';
 const GITHUB_REPO = 'nf-plugin-registry';
@@ -186,6 +190,27 @@ function scanPluginDirs(pluginsSrcDir) {
 }
 
 /**
+ * 挑选可公开分发的插件图标文件（仅限插件根目录下的单层文件名）。
+ * manifest.icon 优先，缺失或不存在时按常见命名回退。
+ * @param {string} pluginDir - 插件源码目录
+ * @param {string} declared - manifest.icon 声明值
+ * @returns {string|null} 图标文件绝对路径
+ */
+function pickPublicIcon(pluginDir, declared) {
+  const names = [];
+  for (const name of [declared, ...ICON_FILE_CANDIDATES]) {
+    const base = String(name || '').trim().replace(/^\.\//, '');
+    if (!base || base.includes('/') || base.includes('\\') || names.includes(base)) continue;
+    names.push(base);
+  }
+  for (const name of names) {
+    const filePath = path.join(pluginDir, name);
+    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) return filePath;
+  }
+  return null;
+}
+
+/**
  * 构建单个插件：收集文件 → 混淆 → 打包 → 签名 → 加密 → 写入 packages/
  * @param {{type: string, id: string, manifestPath: string, dir: string}} p - 插件目录信息
  * @param {string} privPem - 私钥
@@ -251,6 +276,12 @@ function buildPlugin(p, privPem, pubPem) {
 
   // 写入 .sig 文件（base64 签名文本，对 zip 的签名）
   fs.writeFileSync(path.join(pkgDir, `${version}.sig`), sigBase64, 'utf8');
+
+  // 导出明文图标（市场列表展示用；不在加密包内，需与包同目录分发）
+  const iconFile = pickPublicIcon(p.dir, icon);
+  if (iconFile) {
+    fs.copyFileSync(iconFile, path.join(pkgDir, path.basename(iconFile)));
+  }
 
   log(`  ✅ ${pluginId}@${version} (${zipBuf.length} bytes, checksum: ${checksum.slice(0, 8)}...)`);
 

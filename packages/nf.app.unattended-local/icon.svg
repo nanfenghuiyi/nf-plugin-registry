@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f3b6d"/>
+      <stop offset="100%" style="stop-color:#1f7ac2"/>
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" rx="8" fill="url(#g)"/>
+  <!-- 地磅台面 -->
+  <rect x="9" y="27" width="30" height="4" rx="1" fill="#fff"/>
+  <!-- 立柱与仪表 -->
+  <rect x="22" y="14" width="4" height="13" rx="1" fill="#fff"/>
+  <rect x="16" y="9" width="16" height="7" rx="2" fill="#fff"/>
+  <rect x="19" y="11.5" width="10" height="2" rx="1" fill="#1f7ac2"/>
+  <!-- 重量刻度 -->
+  <rect x="13" y="34" width="6" height="5" rx="1" fill="#9fd4ff"/>
+  <rect x="21" y="34" width="6" height="5" rx="1" fill="#9fd4ff"/>
+  <rect x="29" y="34" width="6" height="5" rx="1" fill="#9fd4ff"/>
+</svg>

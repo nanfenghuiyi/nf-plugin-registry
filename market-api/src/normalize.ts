@@ -47,6 +47,8 @@ export function toItem(
     description: p.description || '',
     author: p.author || 'NF Team',
     icon: p.icon || '',
+    // 图标由市场 API 代理回源（.nfpkg 整体加密，包内图标无法直接读取）
+    iconUrl: p.icon ? `${origin}/api/icon?id=${encodeURIComponent(p.id)}` : '',
     type: p.type || 'app',
     category: p.category || 'tool',
     downloads,

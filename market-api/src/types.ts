@@ -172,6 +172,8 @@ export interface MarketItem {
   description: string;
   author: string;
   icon: string;
+  /** 图标可访问地址（市场 API 回源代理；无图标时为空串） */
+  iconUrl: string;
   type: string;
   category: string;
   downloads: number;

@@ -331,6 +331,64 @@ async function proxyPackage(env: Env, target: string): Promise<Response | null> 
   return null;
 }
 
+// ---------- 图标（构建时导出的明文图标回源代理） ----------
+
+/** 与 registry 构建脚本 ICON_FILE_CANDIDATES 保持一致 */
+const ICON_FILE_CANDIDATES = ['icon.svg', 'icon.png', 'icon.webp', 'icon.jpg', 'icon.jpeg'];
+
+const ICON_CONTENT_TYPES: Record<string, string> = {
+  svg: 'image/svg+xml',
+  png: 'image/png',
+  webp: 'image/webp',
+  jpg: 'image/jpeg',
+  jpeg: 'image/jpeg',
+};
+
+/** manifest.icon 只允许单层文件名（防止路径穿越） */
+function safeIconName(name: string | undefined): string {
+  const base = String(name || '').trim().replace(/^\.\//, '');
+  if (!base || base.includes('/') || base.includes('\\')) return '';
+  return base;
+}
+
+/**
+ * GET /api/icon?id=<pluginId>：返回 packages/<id>/icon.* 明文图标。
+ * .nfpkg 整体加密无法在服务端解包，构建时已将图标明文导出到包同目录；
+ * 这里按 manifest.icon → 常见命名回退逐个回源，命中即边缘缓存。
+ */
+async function handleIcon(env: Env, rsp: Responder, url: URL): Promise<Response> {
+  const pluginId = url.searchParams.get('id');
+  if (!pluginId) return rsp.json({ code: 400, msg: '缺少 id 参数' }, 400);
+
+  const [rawRegistry, blocked] = await Promise.all([getRegistry(env), getBlocked(env)]);
+  const p: RegistryPlugin | undefined = applyBlocklist(rawRegistry, blocked).plugins.find(
+    (x) => x.id === pluginId,
+  );
+  if (!p) return rsp.json({ code: 404, msg: '插件不存在或已下架' }, 404);
+
+  const names: string[] = [];
+  for (const name of [safeIconName(p.icon), ...ICON_FILE_CANDIDATES]) {
+    if (name && !names.includes(name)) names.push(name);
+  }
+
+  const base = `https://raw.githubusercontent.com/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/${env.GITHUB_BRANCH}/packages/${encodeURIComponent(pluginId)}/`;
+  for (const name of names) {
+    const upstream = await proxyPackage(env, base + name);
+    if (!upstream) continue;
+    const ext = name.split('.').pop()?.toLowerCase() || '';
+    return new Response(upstream.body, {
+      status: 200,
+      headers: {
+        'Content-Type': ICON_CONTENT_TYPES[ext] || upstream.headers.get('content-type') || 'application/octet-stream',
+        // 图标随包发布而变，缓存一天；缺失结果短缓存避免反复回源
+        'Cache-Control': 'public, max-age=86400',
+        ...rsp.cors,
+      },
+    });
+  }
+  return rsp.json({ code: 404, msg: '图标不存在' }, 404, { 'Cache-Control': 'public, max-age=300' });
+}
+
 async function handleDownload(
   env: Env,
   rsp: Responder,
@@ -508,6 +566,7 @@ export default {
         if (path === '/api/categories') return handleCategories(env, rsp);
         if (path === '/api/stats') return handleStats(env, rsp);
         if (path === '/api/download') return handleDownload(env, rsp, url, ctx, ip);
+        if (path === '/api/icon') return handleIcon(env, rsp, url);
 
         const versionsMatch = path.match(/^\/api\/plugins\/([^/]+)\/versions$/);
         if (versionsMatch) return handleVersions(env, rsp, decodeURIComponent(versionsMatch[1]));
