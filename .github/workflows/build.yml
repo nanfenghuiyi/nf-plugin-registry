@@ -34,15 +34,32 @@ jobs:
             /tmp/electron-egg-demo
           test -d /tmp/electron-egg-demo/plugins && echo "✅ 插件源码目录存在"
 
+      - name: 写入根签名私钥
+        env:
+          KEYS_PRIV_PEM_B64: ${{ secrets.KEYS_PRIV_PEM_B64 }}
+        run: |
+          if [ -z "$KEYS_PRIV_PEM_B64" ]; then
+            echo "❌ 缺少仓库 secret KEYS_PRIV_PEM_B64，无法对 registry.json 签名"
+            exit 1
+          fi
+          mkdir -p keys
+          printf '%s' "$KEYS_PRIV_PEM_B64" | base64 -d > keys/priv.pem
+          chmod 600 keys/priv.pem
+          node -e "const c=require('crypto'),fs=require('fs');const pub=c.createPublicKey(fs.readFileSync('keys/pub.pem','utf8')).export({type:'spki',format:'der'});const derived=c.createPublicKey(c.createPrivateKey(fs.readFileSync('keys/priv.pem','utf8'))).export({type:'spki',format:'der'});if(!pub.equals(derived)){console.error('❌ 私钥与仓库 keys/pub.pem 不匹配');process.exit(1)}console.log('✅ 私钥与公钥匹配')"
+
       - name: 构建全部插件（混淆 + 签名 + AES 加密）
         run: |
           node scripts/build-all.js /tmp/electron-egg-demo/plugins
+
+      - name: 校验 registry.sig
+        run: |
+          node -e "const fs=require('fs'),rs=require('./lib/registrySig');const ok=rs.verifyRegistrySig(fs.readFileSync('registry.json'),fs.readFileSync('registry.sig','utf8'),fs.readFileSync('keys/pub.pem','utf8'));if(!ok){console.error('❌ registry.sig 校验失败');process.exit(1)}console.log('✅ registry.sig 校验通过')"
 
       - name: 提交并推送构建产物
         run: |
           git config user.name "registry-ci"
           git config user.email "registry-ci@users.noreply.github.com"
-          git add packages/ registry.json
+          git add packages/ registry.json registry.sig
           if git diff --cached --quiet; then
             echo "✅ 无变更，跳过提交"
           else

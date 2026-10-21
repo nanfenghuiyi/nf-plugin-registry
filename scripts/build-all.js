@@ -25,6 +25,7 @@ const JavaScriptObfuscator = require('javascript-obfuscator');
 const { createZip } = require('../lib/zip');
 const signLib = require('../lib/sign');
 const encryptLib = require('../lib/encrypt');
+const registrySig = require('../lib/registrySig');
 
 // ============ 配置 ============
 
@@ -426,6 +427,13 @@ async function buildAll(pluginsSrcDir) {
 
   fs.writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2), 'utf8');
   log(`  已写入: ${REGISTRY_PATH}`);
+
+  // registry.json 变更后必须重新签名，否则客户端验签失败会判定索引不可信
+  if (registrySig.signRegistryFile(REGISTRY_DIR, KEYS_DIR)) {
+    log('  🔏 registry.sig 已重新签名');
+  } else {
+    log('  ⚠ 未生成 registry.sig（缺少 keys/priv.pem）');
+  }
   log(`  总计 ${plugins.length} 个插件, ${Object.keys(categories).length} 个分类`);
 
   // 5. 写入构建摘要

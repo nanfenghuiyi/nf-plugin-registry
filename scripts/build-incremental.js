@@ -22,6 +22,7 @@ const { execFileSync } = require('child_process');
 
 const B = require('./build-all');
 const signLib = require('../lib/sign');
+const registrySig = require('../lib/registrySig');
 
 // ============ 配置 ============
 
@@ -281,6 +282,15 @@ function main() {
   B.log('\n📝 合并更新 registry.json...');
   mergeRegistry(registry, records);
   fs.writeFileSync(B.REGISTRY_PATH, JSON.stringify(registry, null, 2), 'utf8');
+
+  // registry.json 变更后必须重新签名，否则客户端验签失败会判定索引不可信
+  const sigPath = registrySig.registrySigPath(B.REGISTRY_DIR);
+  if (registrySig.signRegistryFile(B.REGISTRY_DIR, B.KEYS_DIR)) {
+    B.log('  🔏 registry.sig 已重新签名');
+    stagedFiles.push(sigPath);
+  } else {
+    B.err('  ⚠ 未生成 registry.sig（缺少 keys/priv.pem），客户端将拒绝该索引');
+  }
 
   cache.updatedAt = new Date().toISOString();
   for (const r of records) {
