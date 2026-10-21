@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-20T09:29:52.359Z",
+  "updatedAt": "2026-10-21T02:06:26.072Z",
   "totalPlugins": 38,
   "categories": {
     "admin": {
@@ -613,6 +613,7 @@
         "height": 780,
         "minWidth": 960,
         "minHeight": 600,
+        "maximize": true,
         "csp": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https: nfasset:; media-src 'self' data: blob: nfasset:; font-src 'self' data: blob: nfasset:; frame-src 'self' data: blob: nfasset:; worker-src 'self' blob:; connect-src 'self' http://127.0.0.1:* http://localhost:* https://127.0.0.1:* https://localhost:* ws://127.0.0.1:* ws://localhost:* wss://127.0.0.1:* wss://localhost:* nfasset:; object-src 'none'; base-uri 'self'"
       },
       "main": "index.js",
@@ -642,9 +643,22 @@
           "encrypted": true,
           "encryptionVersion": 1,
           "publishedAt": "2026-10-20T09:29:52.359Z"
+        },
+        "1.0.4": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 4094340,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.nfprint/1.0.4.nfpkg",
+          "checksum": "19e3ed910427347acd12e87dbf1a4d10854d2a8cc9f9fcd6f53ddb20907fc6c2",
+          "signature": "c9RM/7OTEJAMS0DlaBaP0y45l2/nSmSURXeLfXQiE7hBbT6G8jFYuvH5jD0a/7XWR33Y70d3gggBmfdf+M7mAg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-21T02:06:26.072Z"
         }
       },
-      "latestVersion": "1.0.3"
+      "latestVersion": "1.0.4"
     },
     {
       "id": "nf.app.ocr",
