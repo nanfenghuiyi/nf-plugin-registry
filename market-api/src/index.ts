@@ -355,8 +355,10 @@ async function handleDownload(
     return rsp.json({ code: 404, msg: `版本 ${version} 不存在或已下架` }, 404);
   }
 
-  // 异步计数：不阻塞响应；同 IP 60s 内同包只计一次
-  if (shouldCount(`${ip}:${pluginId}@${version}`)) {
+  // 异步计数：不阻塞响应；同 IP 60s 内同包只计一次。
+  // nocount=1：客户端自行控制计数时机（安装成功后 POST /api/download/ack 上报），
+  // 避免「下载成功但安装失败」也被计入下载次数
+  if (url.searchParams.get('nocount') !== '1' && shouldCount(`${ip}:${pluginId}@${version}`)) {
     ctx.waitUntil(incrementDownload(env.DB, pluginId, version));
   }
 
@@ -375,6 +377,41 @@ async function handleDownload(
   const len = upstream.headers.get('content-length');
   if (len) headers.set('Content-Length', len);
   return new Response(upstream.body, { status: 200, headers });
+}
+
+/**
+ * POST /api/download/ack  body: { id, version }
+ * 客户端「下载 + 安装」成功后上报计数；配合下载请求的 nocount=1，
+ * 避免下载成功但安装失败也被计入下载次数。同 IP 60s 内同包去重。
+ */
+async function handleDownloadAck(
+  env: Env,
+  rsp: Responder,
+  request: Request,
+  ip: string,
+): Promise<Response> {
+  let body: any;
+  try {
+    body = await request.json();
+  } catch {
+    return rsp.json({ code: 400, msg: '请求体不是合法 JSON' }, 400);
+  }
+  const pluginId = typeof body?.id === 'string' ? body.id.trim() : '';
+  const version = typeof body?.version === 'string' ? body.version.trim() : '';
+  if (!pluginId || !version) return rsp.json({ code: 400, msg: '缺少 id 或 version' }, 400);
+
+  const [rawRegistry, blocked] = await Promise.all([getRegistry(env), getBlocked(env)]);
+  const p: RegistryPlugin | undefined = applyBlocklist(rawRegistry, blocked).plugins.find(
+    (x) => x.id === pluginId,
+  );
+  if (!p?.versions?.[version] || blocked.has(`${pluginId}@${version}`)) {
+    return rsp.json({ code: 404, msg: `版本 ${version} 不存在或已下架` }, 404);
+  }
+
+  if (shouldCount(`ack:${ip}:${pluginId}@${version}`)) {
+    await incrementDownload(env.DB, pluginId, version);
+  }
+  return rsp.json({ code: 200, msg: 'success' }, 200);
 }
 
 // ---------- 分类 / 统计 ----------
@@ -485,6 +522,11 @@ export default {
         if (detailMatch) {
           return handleDetail(env, rsp, url, decodeURIComponent(detailMatch[1]));
         }
+      }
+
+      // ---- 阶段 2：下载计数上报（POST）----
+      if (method === 'POST' && path === '/api/download/ack') {
+        return handleDownloadAck(env, rsp, request, ip);
       }
 
       // ---- 阶段 3：门户（OAuth / 会话 / 令牌）----

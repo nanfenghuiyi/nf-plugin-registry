@@ -14,7 +14,8 @@
 | GET | `/api/plugins?keyword=&category=&page=&pageSize=&sort=` | 列表：服务端搜索/分类/分页/排序（`downloads` 默认 / `newest`） |
 | GET | `/api/plugins/:id` | 详情（最新版本，含 checksum/signature/publicKey/绝对 downloadUrl） |
 | GET | `/api/plugins/:id/versions` | 全部版本 + 兼容矩阵 |
-| GET | `/api/download?id=&version=` | 302 分发 + 异步计数（同 IP 60s 同包去重） |
+| GET | `/api/download?id=&version=` | 流式回源分发 + 异步计数（同 IP 60s 同包去重）；带 `nocount=1` 时跳过计数，由客户端安装成功后调 `/api/download/ack` 上报 |
+| POST | `/api/download/ack` | body `{ id, version }`：安装成功后上报下载计数（同 IP 60s 同包去重） |
 | GET | `/api/search?q=` | 等价 `/api/plugins?keyword=` |
 | GET | `/api/categories` | 分类列表 |
 | GET | `/api/stats` | `{ plugins, versions, totalDownloads }` |

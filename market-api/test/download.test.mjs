@@ -172,3 +172,74 @@ test('下载限流返回 429', async () => {
     restore();
   }
 });
+
+test('nocount=1 下载不计数，由 ack 上报计数', async () => {
+  const { restore } = stubFetch({
+    upstreams: {
+      'https://raw.githubusercontent.com/': () => new Response(PKG_BYTES, { status: 200 }),
+    },
+  });
+  const db = fakeDB();
+  try {
+    await resetRegistryCache();
+    const env = makeEnv({ DB: db });
+
+    const dl = await getDownload(env, 'https://api.test/api/download?id=nf.app.official&nocount=1');
+    assert.equal(dl.status, 200);
+    assert.equal(
+      db.calls.filter((c) => c.kind === 'run' || c.kind === 'first').length,
+      0,
+      '带 nocount=1 时下载请求本身不应写计数',
+    );
+
+    const ctx = makeCtx();
+    const ack = await worker.fetch(
+      new Request('https://api.test/api/download/ack', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: 'nf.app.official', version: '1.0.0' }),
+      }),
+      env,
+      ctx,
+    );
+    await Promise.all(ctx.waits);
+    assert.equal(ack.status, 200);
+    const counted = db.calls.find((c) => c.kind === 'run' && /download_stats/i.test(c.sql));
+    assert.ok(counted, 'ack 应写入下载计数');
+    assert.deepEqual(counted.args.slice(0, 2), ['nf.app.official', '1.0.0']);
+  } finally {
+    restore();
+  }
+});
+
+test('ack 参数缺失返回 400，版本不存在返回 404', async () => {
+  const { restore } = stubFetch();
+  try {
+    await resetRegistryCache();
+    const env = makeEnv();
+
+    const bad = await worker.fetch(
+      new Request('https://api.test/api/download/ack', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: 'nf.app.official' }),
+      }),
+      env,
+      makeCtx(),
+    );
+    assert.equal(bad.status, 400);
+
+    const missing = await worker.fetch(
+      new Request('https://api.test/api/download/ack', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: 'nf.app.official', version: '9.9.9' }),
+      }),
+      env,
+      makeCtx(),
+    );
+    assert.equal(missing.status, 404);
+  } finally {
+    restore();
+  }
+});
