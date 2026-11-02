@@ -1,0 +1,2604 @@
+{
+  "version": 1,
+  "updatedAt": "2026-11-01T06:31:06.670Z",
+  "totalPlugins": 38,
+  "categories": {
+    "admin": {
+      "name": "管理后台",
+      "count": 1
+    },
+    "tool": {
+      "name": "工具",
+      "count": 19
+    },
+    "app": {
+      "name": "应用",
+      "count": 1
+    },
+    "camera": {
+      "name": "摄像头",
+      "count": 1
+    },
+    "extension": {
+      "name": "扩展",
+      "count": 1
+    },
+    "developer": {
+      "name": "开发者",
+      "count": 1
+    },
+    "gateway": {
+      "name": "网关",
+      "count": 1
+    },
+    "socket": {
+      "name": "Socket",
+      "count": 2
+    },
+    "print": {
+      "name": "打印",
+      "count": 1
+    },
+    "scale": {
+      "name": "电子秤",
+      "count": 1
+    },
+    "scanner": {
+      "name": "扫描器",
+      "count": 1
+    },
+    "serial": {
+      "name": "串口",
+      "count": 1
+    },
+    "streamer": {
+      "name": "流媒体",
+      "count": 3
+    },
+    "websocket": {
+      "name": "WebSocket",
+      "count": 1
+    },
+    "media": {
+      "name": "媒体",
+      "count": 1
+    },
+    "工具": {
+      "name": "工具",
+      "count": 1
+    },
+    "service": {
+      "name": "服务",
+      "count": 1
+    }
+  },
+  "plugins": [
+    {
+      "id": "nf.app.admin",
+      "name": "管理后台",
+      "description": "系统管理后台，包含插件管理、硬件管理、服务管理等功能",
+      "category": "admin",
+      "type": "application",
+      "author": "NF Team",
+      "icon": "icon.png",
+      "homepage": "",
+      "keywords": [],
+      "permissions": [
+        "plugin",
+        "hardware",
+        "service",
+        "settings",
+        "ipc:register",
+        "network:request",
+        "job:exec"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8"
+      },
+      "limits": {},
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/index.html"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 12847,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.admin/1.0.0.nfpkg",
+          "checksum": "e8afcdcbf43f2859d416d9eb9425ac0e158cb4c9c7d37cd4b781eb25945ee0fa",
+          "signature": "7kjDK2ejd/R5+rQ0LcOuq7Z5u9HckSS4FWR8MBZiWIRmpIPc/5fTzGCXxUKAw/nCRMm8owYatk1k5xFZhiI5CQ==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.app.edge-bookmarks",
+      "name": "Edge 收藏夹管理",
+      "description": "Edge 浏览器收藏夹智能管理：重复检测、相似归类、批量整理",
+      "category": "tool",
+      "type": "app",
+      "author": "NF Team",
+      "icon": "icon.svg",
+      "homepage": "",
+      "keywords": [
+        "edge",
+        "收藏夹",
+        "书签",
+        "bookmark",
+        "管理",
+        "去重",
+        "整理"
+      ],
+      "permissions": [
+        "storage:read",
+        "storage:write",
+        "ipc:register",
+        "job:exec"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [
+            "batchOrganize",
+            "dedupe",
+            "exportAll"
+          ],
+          "degradeFlags": {},
+          "notice": "未激活：查看与搜索免费，批量整理/去重/导出需激活"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/index.html"
+      },
+      "ui": {
+        "width": 1100,
+        "height": 720,
+        "title": "Edge 收藏夹管理",
+        "icon": "icon.svg",
+        "minWidth": 800,
+        "minHeight": 560,
+        "resizable": true,
+        "frame": true
+      },
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 24949,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.edge-bookmarks/1.0.0.nfpkg",
+          "checksum": "58528a60fea0c91b1d6d8bff6e621045d2b1f671f0af6c675659588c166d091f",
+          "signature": "jfqUGzWCVFecnBrxuuJxee+1pYqQY6EbDE2c/yKeff9D/phQ8gpPD1+60oesFdhy7bqXX1PSdxk+bFOeo3iMBA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.app.frontend-test",
+      "name": "前端测试 · Playwright",
+      "description": "通用前端 URL 测试工具：输入任意访问地址，一键运行页面可达性/控制台/网络/性能/SEO 五项被动检查，并可开启 AI 驱动的自主功能探索（自动点按每个可交互元素、用硬信号+AI 双轨判定、覆盖率统计）；支持菜单遍历模式（点击所有侧边栏/导航菜单，逐路由体检：空白页/console/HTTP 错误/慢接口/重复请求）、基线对比（上次 ok 这次 fail 的回归自动标红）、回归脚本重放（探索固化为零 AI 重放）、多 URL 批量队列、自定义断言（元素存在/文本包含/请求状态码）、历史报告回看与 HTML/Markdown 导出，以及设备预设（iPhone/Pixel/iPad 模拟 + 移动端 H5 五检）与登录态复用。零安装设计，复用本地 ms-playwright Chromium；AI 默认走本地 Ollama，可切换云端 OpenAI 兼容端点",
+      "category": "tool",
+      "type": "app",
+      "author": "NF Team",
+      "icon": "icon.svg",
+      "homepage": "",
+      "keywords": [
+        "前端测试",
+        "URL 测试",
+        "Playwright",
+        "AI 探索",
+        "功能测试",
+        "管理后台",
+        "移动端 H5",
+        "Ollama",
+        "测试工具",
+        "Chromium"
+      ],
+      "permissions": [
+        "ipc:register",
+        "storage:read",
+        "storage:write",
+        "job:exec",
+        "network:request"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [],
+          "notice": ""
+        }
+      },
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/index.html"
+      },
+      "ui": {
+        "width": 1180,
+        "height": 800,
+        "title": "前端测试 · Playwright",
+        "icon": "icon.svg",
+        "minWidth": 960,
+        "minHeight": 640,
+        "resizable": true,
+        "frame": true
+      },
+      "main": "index.js",
+      "versions": {
+        "3.3.3": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 107395,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.frontend-test/3.3.3.nfpkg",
+          "checksum": "d02fb6821344eb80cad648e8c1d9052ff3a35c4d60f5d85bc652880b919117ec",
+          "signature": "M7Fr6/hQqcZwX0bba2M24Oc97eiLKJEf7dHMSBlg4fjAdTJq2VynM5oHrW8u1oRxCnPGg+AZwDQc8TMnj7h2BA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "3.3.3"
+    },
+    {
+      "id": "nf.app.galileo-os",
+      "name": "Galileo OS 应用后台",
+      "description": "Galileo OS 应用管理后台，统一管理硬件、服务、流媒体、系统设置等",
+      "category": "tool",
+      "type": "app",
+      "author": "NF Team",
+      "icon": "icon.svg",
+      "homepage": "",
+      "keywords": [
+        "OS",
+        "Galileo",
+        "管理后台",
+        "硬件",
+        "服务",
+        "流媒体",
+        "系统"
+      ],
+      "permissions": [
+        "storage:read",
+        "storage:write",
+        "ipc:register",
+        "network:request"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8"
+      },
+      "limits": {},
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/index.html"
+      },
+      "ui": {
+        "width": 1200,
+        "height": 800,
+        "title": "Galileo OS 应用后台",
+        "icon": "icon.svg",
+        "minWidth": 1024,
+        "minHeight": 700,
+        "resizable": true,
+        "frame": true
+      },
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 20974,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.galileo-os/1.0.0.nfpkg",
+          "checksum": "1e90e868a97b3e11033b910a927a2c2ae7c99c8145abbd8cff77479c13e12f6e",
+          "signature": "bxwDGAInb6LGzlE+5VOjAJurJRKTqmtdUlHWMxgAyCyhFZLUSZTaBW8VkCM6zNi2jvZWDlVp7e+GizQV8OubDw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        },
+        "1.0.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 141393,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.galileo-os/1.0.1.nfpkg",
+          "checksum": "400d27c36d985d88c31ec46f8aadd7c96768c3e6c8c6904f3fd07ad2bd99c86c",
+          "signature": "xEXvpkfHF7QTFdn3XCYl97BH/fF6rYOunalT2YtnxoYZOLPYMalZP4F3Y4NZytl17j1QYi3J1Zu8lXozS5EKAA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-11-01T05:41:34.046Z"
+        }
+      },
+      "latestVersion": "1.0.1"
+    },
+    {
+      "id": "nf.app.gltf-optimizer",
+      "name": "glTF 模型优化 · 数据标记",
+      "description": "基于 glTF-Transform 的 3D 模型量化与压缩优化工具，支持检查、优化、对比、批量处理；同时提供节点级数据标记能力，支持与 Three.js userData 兼容的 JSON 导入导出与孤立数据矫正",
+      "category": "tool",
+      "type": "app",
+      "author": "NF Team",
+      "icon": "icon.svg",
+      "homepage": "",
+      "keywords": [
+        "glTF",
+        "模型优化",
+        "Draco",
+        "压缩",
+        "量化",
+        "3D",
+        "WebGL",
+        "纹理压缩",
+        "数据标记",
+        "userData",
+        "节点标签",
+        "数字孪生",
+        "Three.js"
+      ],
+      "permissions": [
+        "storage:read",
+        "storage:write",
+        "ipc:register",
+        "job:exec",
+        "window:manage"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [
+            "optimize",
+            "batchOptimize",
+            "exportResult",
+            "writeUserDataMap",
+            "saveModelWithUserData",
+            "cleanupOrphanUserData",
+            "applyBatchJson",
+            "exportNodeDataJson",
+            "selectNodeDataJson"
+          ],
+          "degradeFlags": {
+            "inspectOnly": true
+          },
+          "notice": "未激活：仅支持模型检查与浏览；数据标记可浏览，无法保存；优化/批量处理需激活"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/index.html"
+      },
+      "ui": {
+        "width": 1400,
+        "height": 900,
+        "title": "glTF 模型优化 · 数据标记",
+        "icon": "icon.svg",
+        "minWidth": 1100,
+        "minHeight": 700,
+        "resizable": true,
+        "frame": true
+      },
+      "main": "index.js",
+      "versions": {
+        "1.1.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 493332,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.gltf-optimizer/1.1.0.nfpkg",
+          "checksum": "839e54d7947387499a78b28d4a0d9d8d83d486aebf73efef3f2c726bf330d279",
+          "signature": "9F39D9Lus0lBGVQP4uWyBNLSVQdpQnqd7FVGNp63TcdKaD59EuRD823qRsxtrKvS+GwZm8xplFMy6ZwP4Z4jAA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        },
+        "1.1.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 10757708,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.gltf-optimizer/1.1.1.nfpkg",
+          "checksum": "9f254b1bc02f6727d4437a1ca02822e297f192c4de6a639b47bcebe1db054eb2",
+          "signature": "8VxbiqxG/pA6kUC+qdgYuIophpMuGrdWhOhHBhmGCUDhxH6cl97EmmpOgq6DZA+A9okHtKfFWyP+DH1Z29b9Dw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-21T09:53:12.887Z"
+        }
+      },
+      "latestVersion": "1.1.1"
+    },
+    {
+      "id": "nf.app.live2d-pet",
+      "name": "Live2D 桌宠",
+      "description": "基于 Cubism SDK 的 Live2D 桌面宠物：键盘按键驱动 Live2D 模型参数 + 按键可视化 + 鼠标跟随，支持 BongoCat 兼容模型包。不依赖 nf.plugin.live2d-runtime。",
+      "category": "tool",
+      "type": "app",
+      "author": "NF Team",
+      "icon": "",
+      "homepage": "",
+      "keywords": [
+        "Live2D",
+        "桌宠",
+        "桌面宠物",
+        "Cubism",
+        "bongocat",
+        "键盘可视化",
+        "陪伴"
+      ],
+      "permissions": [
+        "ipc:register",
+        "storage:read",
+        "storage:write",
+        "shortcut:register",
+        "window:manage",
+        "tray:menu",
+        "system:globalInput",
+        "job:exec"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8"
+      },
+      "limits": {},
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/pet/index.html"
+      },
+      "ui": {
+        "width": 400,
+        "height": 400,
+        "title": "Live2D 桌宠",
+        "icon": "icon.svg",
+        "frame": false,
+        "resizable": false,
+        "transparent": true,
+        "alwaysOnTop": true,
+        "managedByPlugin": true,
+        "webPreferences": {
+          "webgl": true,
+          "experimentalFeatures": true
+        }
+      },
+      "main": "index.js",
+      "versions": {
+        "1.0.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 36684018,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.live2d-pet/1.0.1.nfpkg",
+          "checksum": "9946c6c3638c5c2118d018de01167e5c42fdc675d48cfe135d57e371fc66703c",
+          "signature": "NAtC/sYBDHP6/4yrUxVoDDb/xfpbfexe6WZI98lqE+NGqhg0SMzSLxtACKmuCiqafGpgYyjyEH1yxR4hMiplCw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.1"
+    },
+    {
+      "id": "nf.app.local-search",
+      "name": "本地搜索",
+      "description": "跨平台本地文件毫秒级搜索，支持模糊匹配、扩展语法、文件操作",
+      "category": "tool",
+      "type": "app",
+      "author": "NF Team",
+      "icon": "icon.svg",
+      "homepage": "",
+      "keywords": [
+        "本地搜索",
+        "文件搜索",
+        "搜索",
+        "Everything",
+        "find",
+        "search"
+      ],
+      "permissions": [
+        "storage:read",
+        "storage:write",
+        "ipc:register",
+        "job:exec"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8"
+      },
+      "limits": {},
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/index.html"
+      },
+      "ui": {
+        "width": 900,
+        "height": 640,
+        "title": "本地搜索",
+        "icon": "icon.svg",
+        "minWidth": 640,
+        "minHeight": 480,
+        "resizable": true,
+        "frame": true
+      },
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 1004623,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.local-search/1.0.0.nfpkg",
+          "checksum": "eb188199dfbffe8fef243a6f9544df687e6f07fb0ea629d923d7a73c7f6aefbe",
+          "signature": "PLmYyqHbGcoKfcYHY0ixX0WM0ETG5RrmKBOosNzw42/LmNCi1P8OqrmfpsW4pZphTM0kXa5xbNuPkUYhm3UyBw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.app.localweb",
+      "name": "本地Web应用托管插件",
+      "description": "提供HTTP静态文件服务器和文件下载/解压服务。HTTP Server基于http-server，支持端口自动查找；文件下载支持进度回调、MD5校验、zip解压。从主程序剥离后可按需下载，减小初始包体积约3MB。",
+      "category": "app",
+      "type": "system",
+      "author": "南风-残雨",
+      "icon": "icon.png",
+      "homepage": "https://www.example.com/plugins/app-localweb",
+      "keywords": [],
+      "permissions": [
+        "network:request",
+        "storage:read",
+        "storage:write",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [
+            "publish"
+          ],
+          "degradeFlags": {
+            "singleSiteOnly": true
+          },
+          "notice": "未激活：仅支持单站点本地访问，对外发布需激活"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 5139,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.localweb/1.0.0.nfpkg",
+          "checksum": "dd9da66f0e2a670439c9dcb030c539a3df74cdba9fb778896afba34412f12496",
+          "signature": "v+TkLlik2N5c0NJgd2WCRm0chtqmTDZAmTid5q5e3PFCuMgVbW9o4E91xlHakzFzkjhvq54BOdwMQk1+MDUDAg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        },
+        "1.0.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 5105,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.localweb/1.0.1.nfpkg",
+          "checksum": "fbeb13a7df42adf653c9c42a944e976688be41906b15564539fdcf7329e528ce",
+          "signature": "0pm38a4d+Rh6g9Nl6NQVvqzI9/1K3M0ANuaon8zr1UFFW/QQiq7mu9bN6qrkwa7a3NzN4bi2L4DG4Dnayx91BA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-11-01T05:41:34.046Z"
+        }
+      },
+      "latestVersion": "1.0.1"
+    },
+    {
+      "id": "nf.app.nfprint",
+      "name": "NF 打印设计器服务",
+      "description": "打印设计器后端服务：模板 CRUD、模板市场、元素市场 API 与前端站点托管；打印能力复用 nf.hardware.print（ws://127.0.0.1:17522/nfprint）",
+      "category": "tool",
+      "type": "app",
+      "author": "NF Team",
+      "icon": "icon.svg",
+      "homepage": "",
+      "keywords": [],
+      "permissions": [
+        "network:request",
+        "storage:read",
+        "storage:write"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8"
+      },
+      "limits": {},
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/index.html"
+      },
+      "ui": {
+        "width": 1200,
+        "height": 780,
+        "minWidth": 960,
+        "minHeight": 600,
+        "maximize": true,
+        "csp": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https: nfasset:; media-src 'self' data: blob: nfasset:; font-src 'self' data: blob: nfasset:; frame-src 'self' data: blob: nfasset:; worker-src 'self' blob:; connect-src 'self' http://127.0.0.1:* http://localhost:* https://127.0.0.1:* https://localhost:* https: ws://127.0.0.1:* ws://localhost:* wss://127.0.0.1:* wss://localhost:* nfasset:; object-src 'none'; base-uri 'self'"
+      },
+      "main": "index.js",
+      "versions": {
+        "1.0.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 4096021,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.nfprint/1.0.1.nfpkg",
+          "checksum": "32de5206703d95594eceb98215954df21d33ccc4e851dd2b07debd235f31e5ef",
+          "signature": "VbhHawmsFm8zyX4J1ATePVRYrAa2cXfuLoDvtirtjw6mkSZld65q2IGNqYJrqImh9G7EHunk6UruIwkt0ZV4Cg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        },
+        "1.0.3": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 4102353,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.nfprint/1.0.3.nfpkg",
+          "checksum": "b70cd40c92ee1265ab05d006181be3ecbd3f63d29cfdf75eb58e490c5efbcdc1",
+          "signature": "fA54/lAa+Uacm8cl5rIGFq70hrc0/UiM7MdvNQ565EtsDwu35uHO42DYEMq4Q1zjtQg46TIBm+G2xmt3VV6qDw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T09:29:52.359Z"
+        },
+        "1.0.4": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 4094340,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.nfprint/1.0.4.nfpkg",
+          "checksum": "19e3ed910427347acd12e87dbf1a4d10854d2a8cc9f9fcd6f53ddb20907fc6c2",
+          "signature": "c9RM/7OTEJAMS0DlaBaP0y45l2/nSmSURXeLfXQiE7hBbT6G8jFYuvH5jD0a/7XWR33Y70d3gggBmfdf+M7mAg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-21T02:06:26.072Z"
+        },
+        "1.0.5": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 4090757,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.nfprint/1.0.5.nfpkg",
+          "checksum": "18cc61c296af1a2b233e7bbb48b8db41abde650e72a2dae12fb7dc4df0de0a31",
+          "signature": "BvL25D3denHVPZdOlJqKwMH61rJDNGZ8T0COQ3bj6xe6GORKA3INSHwvNJ2asYivor0rtanFTNismksKgFNcAg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-21T02:43:44.598Z"
+        },
+        "1.0.6": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 4105019,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.nfprint/1.0.6.nfpkg",
+          "checksum": "82b8ce01c64e50abbb3cb48c24871e2df45906bee5fc95eed499669ffde9e0db",
+          "signature": "P5Q1WrnKAkCW+DxpH1UcrETEQoT37HvaoAT1bzJjgkyXFvBGIGU0v4Hv2U0tr8EnKuNgeXgXWU8a8NZiR8gcAA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-21T05:55:23.847Z"
+        },
+        "1.0.7": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 4101246,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.nfprint/1.0.7.nfpkg",
+          "checksum": "bf36ba20087cc5ff49f24c4ec0e9107cb81afd42ec9b31c076afb76da0d868c2",
+          "signature": "PpbTL0Lki2PyF91J1j5Ndb0s+1uNYp++r+XjVzuE2pMdPcFEnbUVcH8EOqTgkMd+0PwHBiaClqx9h5XIbc3KDg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-21T09:01:58.774Z"
+        },
+        "1.0.11": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 3962331,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.nfprint/1.0.11.nfpkg",
+          "checksum": "5f6c5f2603505f5b1ba9de4d51f5a4393f8fc97dd233ae78283eb5cfa770a114",
+          "signature": "zIRlr0A018DisLoPFRnqQp1CbafGJXxLh4fryRMQFGWRUqOxaQZlsWYjbyCJ2phsUbMiMtAzo/FOOVDKBJHsBw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-11-01T05:41:34.046Z"
+        },
+        "1.0.14": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 4429891,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.nfprint/1.0.14.nfpkg",
+          "checksum": "d12cc98f53513b8e61c7e2a879dac9cf713b5c1492f4a39abaf9f70e4a2bd1b1",
+          "signature": "0iaJxQINYxZyMyz546ixRZHYRjA+NIsE4xmfjzRpWrgdQf+7vllM8z5+XQ9BaKfS41zPOFaLGxK5oR991rCVBg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-11-01T06:09:48.896Z"
+        },
+        "1.0.15": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 4481115,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.nfprint/1.0.15.nfpkg",
+          "checksum": "f3013ce86183ab8940f036de780f9af03885243b170a0c5b77670192b25e6c40",
+          "signature": "/JeoVV15HmfmPFPcT/IdJBY7II0AH3Q3gQM/t6gP+DuteEXIoYg5aYhfQOL07F7ITrwVRvQdInixv46iV3TYBQ==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-11-01T06:19:49.465Z"
+        },
+        "1.0.17": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 4393356,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.nfprint/1.0.17.nfpkg",
+          "checksum": "552d6ce6b15bd1bb2b36b826db643bde7be51aa2c66eafaca383409b973f03ed",
+          "signature": "qY1KUqYt5CdzL2EnnviQvI1RjtO30ORoVgY06wasyegdLHnOB9ZXUdEkDX/Th4Arkq0aOBUvXPw0P5W9SxYGCw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-11-01T06:31:06.670Z"
+        }
+      },
+      "latestVersion": "1.0.17"
+    },
+    {
+      "id": "nf.app.ocr",
+      "name": "OCR 文字识别",
+      "description": "屏幕截图 OCR、图片拖入/粘贴识别，支持复制、搜索、翻译、历史记录",
+      "category": "tool",
+      "type": "app",
+      "author": "NF Team",
+      "icon": "icon.svg",
+      "homepage": "",
+      "keywords": [
+        "OCR",
+        "文字识别",
+        "截图识别",
+        "图片转文字",
+        "tesseract"
+      ],
+      "permissions": [
+        "storage:read",
+        "storage:write",
+        "ipc:register",
+        "job:exec",
+        "window:manage",
+        "shortcut:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8"
+      },
+      "limits": {},
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/index.html"
+      },
+      "ui": {
+        "width": 900,
+        "height": 640,
+        "title": "OCR 文字识别",
+        "icon": "icon.svg",
+        "minWidth": 720,
+        "minHeight": 520,
+        "resizable": true,
+        "frame": true
+      },
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 20825,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.ocr/1.0.0.nfpkg",
+          "checksum": "f874c3ceb9eab5bf469d2cb1ca561db81c11c7641899063136a865c122e474bc",
+          "signature": "Kjz9ijmSr0Thl4YAYRSGDMmJYPjUtQz8tb622V0orcSegnqE7PvMvXnWfBbOkBqbBntUcT1EHGg4Ai5Hvfm+Dw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.app.photo",
+      "name": "照片整理·地图",
+      "description": "本地离线照片整理工具：递归扫描、读取 EXIF（拍摄时间/设备/GPS）、按年/月/日归档、生成 CSV 索引，并用交互地图展示拍摄位置（聚合/缩略图/底图切换/时间筛选）。照片不出本机，仅地图瓦片需联网。",
+      "category": "tool",
+      "type": "app",
+      "author": "NF Team",
+      "icon": "icon.svg",
+      "homepage": "",
+      "keywords": [
+        "照片",
+        "图片整理",
+        "EXIF",
+        "相册",
+        "按日期归档",
+        "地图",
+        "GPS",
+        "离线",
+        "本地"
+      ],
+      "permissions": [
+        "storage:read",
+        "storage:write",
+        "ipc:register",
+        "window:manage",
+        "network:request"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8"
+      },
+      "limits": {},
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/admin/index.html"
+      },
+      "ui": {
+        "width": 1100,
+        "height": 760,
+        "title": "照片整理 · 地图",
+        "icon": "icon.svg",
+        "minWidth": 480,
+        "minHeight": 420,
+        "resizable": true,
+        "frame": true
+      },
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 112539,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.photo/1.0.0.nfpkg",
+          "checksum": "2d449d2bbf2cfd0b3b661b4d95d8eda237a43025dcf4ecf328d158c2631accd7",
+          "signature": "7T14TUIH3ezwMX2PIYLjuE33o2+NjHYlab9dyqKMVvHaQMgSHyGNWI1jAw6SrfhDrbnDPMDlbXb7hhiSqRpFDg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.app.planner",
+      "name": "计划看板",
+      "description": "月目标→周任务→日待办的层级计划工作台，带完成率仪表盘与逾期自动顺延，数据本地存储",
+      "category": "tool",
+      "type": "app",
+      "author": "NF Team",
+      "icon": "icon.svg",
+      "homepage": "",
+      "keywords": [
+        "计划",
+        "计划表",
+        "看板",
+        "目标",
+        "月度目标",
+        "周任务",
+        "待办",
+        "进度",
+        "仪表盘",
+        "规划",
+        "拆解"
+      ],
+      "permissions": [
+        "storage:read",
+        "storage:write",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8"
+      },
+      "limits": {},
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/admin/index.html",
+        "widget": "renderer/dist/widget/index.html"
+      },
+      "ui": {
+        "width": 1180,
+        "height": 800,
+        "title": "计划看板",
+        "icon": "icon.svg",
+        "minWidth": 480,
+        "minHeight": 420,
+        "resizable": true,
+        "frame": true
+      },
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 20499,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.planner/1.0.0.nfpkg",
+          "checksum": "c62f50b9e968d97b72e0fbb6127623995e2b0a40f64f5a990c7de60be82e8619",
+          "signature": "ms43I9fg5PIzws3uM/Uav9Z+JxK0rsNYj3uob3BDbX++JMsPqzKKboOQIhA1bXzWkKAIAwzXKrDGo+LFhCWyCw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.app.power-scheduler",
+      "name": "定时开关机",
+      "description": "系统电源计划工具：定时/延时关机、重启、睡眠、休眠、锁屏、注销，支持每日与每周重复计划、执行前提醒、取消系统关机，以及从睡眠唤醒的唤醒任务",
+      "category": "tool",
+      "type": "app",
+      "author": "NF Team",
+      "icon": "icon.svg",
+      "homepage": "",
+      "keywords": [
+        "定时关机",
+        "关机",
+        "重启",
+        "定时开机",
+        "开机",
+        "唤醒",
+        "睡眠",
+        "休眠",
+        "锁屏",
+        "注销",
+        "shutdown",
+        "restart",
+        "电源",
+        "计划任务",
+        "自动关机"
+      ],
+      "permissions": [
+        "storage:read",
+        "storage:write",
+        "ipc:register",
+        "job:exec",
+        "notification:create",
+        "system:info"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8"
+      },
+      "limits": {},
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/index.html"
+      },
+      "ui": {
+        "width": 780,
+        "height": 720,
+        "title": "定时开关机",
+        "icon": "icon.svg",
+        "minWidth": 520,
+        "minHeight": 480,
+        "resizable": true,
+        "frame": true
+      },
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 19476,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.power-scheduler/1.0.0.nfpkg",
+          "checksum": "438e601e7539ba5ef78872becb768df6ecbfb92719f27160bf720cc64851b90b",
+          "signature": "za4sa0dcQY97x/rUAa/etDbSMg6fvixuqFqG1COiBnRV9kfSJAnauxjf2hPe3Y/Kvc1zrSf4WQWbmJ/WEPfXBw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.app.screenshot",
+      "name": "截图",
+      "description": "区域截图、全屏截图、延时截图、标注编辑、钉图、复制保存",
+      "category": "tool",
+      "type": "app",
+      "author": "NF Team",
+      "icon": "icon.svg",
+      "homepage": "",
+      "keywords": [
+        "截图",
+        "screenshot",
+        "截屏",
+        "标注",
+        "钉图"
+      ],
+      "permissions": [
+        "storage:read",
+        "storage:write",
+        "ipc:register",
+        "shortcut:register",
+        "notification:create",
+        "window:manage"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8"
+      },
+      "limits": {},
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/index.html"
+      },
+      "ui": {
+        "width": 900,
+        "height": 620,
+        "title": "截图",
+        "icon": "icon.svg",
+        "minWidth": 720,
+        "minHeight": 480,
+        "resizable": true,
+        "frame": true
+      },
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 23022,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.screenshot/1.0.0.nfpkg",
+          "checksum": "1f1138ea0f6505f71fcf9bc4d57f2b066849e4f17c69005e491b7f1c973b982c",
+          "signature": "KXsUEzbHPtJeji+Hk9FI6q33WDIAniIvr6+Si27QvVsR6wMyYfUY8IymYns547dWqdGb7qHsOnlE6Aqfb9BtBQ==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.app.todo",
+      "name": "任务管理",
+      "description": "个人任务管理工具，支持分类、标签、桌面常驻提醒、番茄钟、重复任务、任务提醒",
+      "category": "tool",
+      "type": "app",
+      "author": "NF Team",
+      "icon": "icon.svg",
+      "homepage": "",
+      "keywords": [
+        "任务管理",
+        "todo",
+        "待办",
+        "任务",
+        "工具",
+        "桌面便签",
+        "提醒",
+        "番茄钟",
+        "计时",
+        "重复任务",
+        "周期任务",
+        "工作日",
+        "自然语言"
+      ],
+      "permissions": [
+        "storage:read",
+        "storage:write",
+        "ipc:register",
+        "job:exec",
+        "network:request",
+        "tray:create",
+        "tray:update",
+        "shortcut:register",
+        "notification:create"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [
+            "syncExport"
+          ],
+          "degradeFlags": {},
+          "notice": "未激活：基础任务记录免费，数据同步与导出需激活"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/admin/index.html",
+        "widget": "renderer/dist/widget/index.html"
+      },
+      "ui": {
+        "width": 900,
+        "height": 640,
+        "title": "任务管理",
+        "icon": "icon.svg",
+        "minWidth": 480,
+        "minHeight": 360,
+        "resizable": true,
+        "frame": true
+      },
+      "main": "index.js",
+      "versions": {
+        "2.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 48234,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.todo/2.0.0.nfpkg",
+          "checksum": "c857ce9d4932644147eb4c2f3bf507d8ba79a3ccaa12e2b6846b81b4586d9202",
+          "signature": "KkSJ9Ky+bw9qt5P8L0gFr6zkXdvYLsLIBQmY2xKh1NJE09NSt3ecL4fLjtnpRLd3BseL/Ff/qzTLq9sNIuV2CQ==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "2.0.0"
+    },
+    {
+      "id": "nf.app.unattended-local",
+      "name": "无人值守地磅本地服务插件",
+      "description": "工控机本地侧（unattended-local）功能插件：提供本地过磅闭环 REST 服务（firstWeigh/secondWeigh/manualAdd）、设备事件 WebSocket（200/201/300 权限判定）、SQLite 本地库、Transactional Outbox 离线上行、openapi 下行拉取与心跳。对应《餐二无人值守前后端架构设计》中 unattended-local:8089 的全部本地职责。以本地服务形态常驻运行（type=app，autoStart 开机自启并运行服务），并附带「运维看板」插件窗口（renderer/dist/index.html），可观察设备在线/outbox 积压/上行状态/最近单据并手动重推。",
+      "category": "tool",
+      "type": "app",
+      "author": "南风-残雨",
+      "icon": "icon.svg",
+      "homepage": "https://www.example.com/plugins/unattended-local",
+      "keywords": [],
+      "permissions": [
+        "network:request",
+        "ipc:register",
+        "storage:read",
+        "storage:write",
+        "database:manage"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [
+            "syncNow"
+          ],
+          "degradeFlags": {
+            "syncDisabled": true
+          },
+          "notice": "未激活：本地过磅闭环不受限，上行同步（HTTP/Kafka）与手动重推需激活"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/index.html"
+      },
+      "ui": {
+        "width": 980,
+        "height": 700,
+        "title": "无人值守地磅 · 运维看板",
+        "minWidth": 520,
+        "minHeight": 420,
+        "resizable": true,
+        "frame": true
+      },
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 56913,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.unattended-local/1.0.0.nfpkg",
+          "checksum": "d8bd55ce7d656858bfcb9acea325d600cd9c3eaf063cb1646bc9cfaeef99e936",
+          "signature": "C4RbGfphiX+7sDvqbIgPpT0+XBeTW97piIIJdt8G5m6ZJOPBtfuR2IgnOniGNfoKQvB0WoneLl/WOiFU7XP3DQ==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        },
+        "1.0.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 408093,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.unattended-local/1.0.1.nfpkg",
+          "checksum": "49cdd1f368be4c616c86567042f4b85d3bd2cb92c2a9ba965e6d2e1c8b6ba7d4",
+          "signature": "Gzoa8W1POQ8YI7kIfQL9z6YDZxYItNTgrMp4sx4yB6TzC/DsKPXgYH/Vn53KPmYL9oUL9XXXTWPW0KqgtlHuAw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-21T09:53:12.887Z"
+        },
+        "1.0.2": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 408647,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.unattended-local/1.0.2.nfpkg",
+          "checksum": "d357bcaded79befedf1afc08c48904ca3a3f3b694f564c20e2b7be58e06f57dd",
+          "signature": "Ei0BpHluXcALYesQrhRpJ+KOAMABugp+sXj7NnUxuPrJhsC0QSROI4UB/IwLKRVpgV13vMAUpNlJLDvoRXpZCg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-11-01T05:41:34.046Z"
+        }
+      },
+      "latestVersion": "1.0.2"
+    },
+    {
+      "id": "nf.app.web-quick",
+      "name": "网页快开",
+      "description": "网页快开工具，支持网站分组管理、智能搜索、多站点同时打开、favicon 自动获取",
+      "category": "tool",
+      "type": "app",
+      "author": "NF Team",
+      "icon": "icon.svg",
+      "homepage": "",
+      "keywords": [
+        "网页快开",
+        "网址",
+        "搜索",
+        "网站",
+        "导航",
+        "favicon",
+        "浏览器",
+        "快捷打开"
+      ],
+      "permissions": [
+        "storage:read",
+        "storage:write",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [
+            "batchOpen"
+          ],
+          "degradeFlags": {},
+          "notice": "未激活：单站点打开免费，批量打开需激活"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/index.html"
+      },
+      "ui": {
+        "width": 820,
+        "height": 600,
+        "title": "网页快开",
+        "icon": "icon.svg",
+        "minWidth": 640,
+        "minHeight": 480,
+        "resizable": true,
+        "frame": true
+      },
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 16731,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.web-quick/1.0.0.nfpkg",
+          "checksum": "94d66162a40bd615eec8b3089e2a72c4d049e7f87bf2145a6e82c46e4c26d1cc",
+          "signature": "nfzrQU8MjaeOSF2Qeww8C6rLr0L0dKI1O3VYE/3gUteXEzVY1cuCShXfB+U+dy58H26cxHC7MYKT8QvKqPV7CA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.device.hikvision",
+      "name": "海康威视Web SDK插件",
+      "description": "提供海康威视HCWebSDKPlugin.exe进程管理能力。从主程序build/extraResources/exe/剥离后可独立升级、按需安装，减小主包体积约14MB。",
+      "category": "camera",
+      "type": "device",
+      "author": "南风-残雨",
+      "icon": "icon.png",
+      "homepage": "https://www.example.com/plugins/hikvision",
+      "keywords": [],
+      "permissions": [
+        "hardware:streamer",
+        "storage:read",
+        "storage:write",
+        "ipc:register",
+        "job:exec"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {},
+      "entrypoints": {
+        "main": "index.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 15332630,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.device.hikvision/1.0.0.nfpkg",
+          "checksum": "559e9caf020a66676569f6f4302e0e2a6d79c928204d31740ae99867b712eeb6",
+          "signature": "wiB5nlN7ABU8o+aF+b9unkVo4jm6SyzCRHcISl7I8HowctkAxzKT9itbhzFFqLHATvPLQo6fNw8F0d3pjzobAA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.extension.crossLanguage",
+      "name": "跨语言服务插件",
+      "description": "跨语言服务管理插件，支持启动/停止外部语言程序（Go、Python、Rust、Node.js等），提供HTTP请求代理和进程管理能力",
+      "category": "tool",
+      "type": "extension",
+      "author": "南风-残雨",
+      "icon": "icon.svg",
+      "homepage": "https://www.example.com/plugins/cross-language",
+      "keywords": [],
+      "permissions": [
+        "process:manage",
+        "network:request",
+        "storage:read",
+        "storage:write",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [
+            "startService",
+            "restartService",
+            "executeCommand"
+          ],
+          "degradeFlags": {
+            "queryOnly": true
+          },
+          "notice": "未激活：仅支持查询服务状态，启动外部语言服务/执行命令需激活"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 7029,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.extension.crossLanguage/1.0.0.nfpkg",
+          "checksum": "098d6c53cd99475ff1297f1d5895d2e3c39c08ab674e80fd600f8afc75fef368",
+          "signature": "jqcAeO+5W2mvT96XPV4GQEuPof/RmxMwpeZlBMhyhz3u3RZ5X0wlzgvIwHXbuL0pg0kGuuDWmKgvTAvYRsTNAA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.extension.debugger",
+      "name": "插件调试器",
+      "description": "生产环境插件调试工具，支持代码热替换、插件重载、实时日志查看和 API 测试",
+      "category": "tool",
+      "type": "extension",
+      "author": "NF Team",
+      "icon": "",
+      "homepage": "",
+      "keywords": [],
+      "permissions": [
+        "storage:read",
+        "storage:write",
+        "ipc:register",
+        "plugin:invoke",
+        "plugin:reload"
+      ],
+      "engines": {},
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [
+            "enableDebug",
+            "uploadFile",
+            "uploadDirectory",
+            "testApi"
+          ],
+          "degradeFlags": {
+            "readonlyMode": true
+          },
+          "notice": "未激活：仅支持查看插件文件/日志/调试状态，代码热替换/上传/测试 API 需激活"
+        }
+      },
+      "entrypoints": {},
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 16032,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.extension.debugger/1.0.0.nfpkg",
+          "checksum": "03e046cae56cba6ccb836a25b367a496da0db05efd778cc0e04f5db122a103bb",
+          "signature": "1TdejZ/2+pTSiVNiyPjMf3EigjMqYZFdzulBPyJIHgOCEkEmCd/acfYtw/liKlDzEB6jUiDiXijvqS++YA9wCA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.extension.loader",
+      "name": "Chrome扩展加载插件",
+      "description": "通过Electron session.loadExtension加载已解压的Chrome扩展，支持扩展的加载/卸载/重载以及窗口自动重载。从主程序剥离后可按需下载，支持独立升级扩展。",
+      "category": "extension",
+      "type": "system",
+      "author": "南风-残雨",
+      "icon": "icon.png",
+      "homepage": "https://www.example.com/plugins/extension-loader",
+      "keywords": [],
+      "permissions": [
+        "system:extension",
+        "storage:read",
+        "storage:write",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {},
+      "entrypoints": {
+        "main": "index.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": false,
+          "size": 3986,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.extension.loader/1.0.0.nfpkg",
+          "checksum": "1fb21675386109a3642a0b5bd2f2f0c0b01ae7dab46338e0e9dd1be8685cbf5b",
+          "signature": "cBDcyjoe/7TXpVNf9GZmg1N9YprN4z4Wd1RznRRvsMQnSOQgF9+qyNJ6iN9s1XwFd5uLUi3rIGtGtEQQB8OCDg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.extension.pagespy",
+      "name": "PageSpy远程调试",
+      "description": "内置PageSpy远程调试服务，支持Web/小程序/RN等多平台实时调试与离线日志回放",
+      "category": "developer",
+      "type": "extension",
+      "author": "南风-残雨",
+      "icon": "icon.svg",
+      "homepage": "https://github.com/HuolalaTech/page-spy-web",
+      "keywords": [],
+      "permissions": [
+        "network:request",
+        "job:exec",
+        "storage:read",
+        "storage:write",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [
+            "start",
+            "restart"
+          ],
+          "degradeFlags": {},
+          "notice": "未激活：调试服务状态查看免费，启动 PageSpy 远程调试服务需激活"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 23355,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.extension.pagespy/1.0.0.nfpkg",
+          "checksum": "796977323b28b52ba04639472892aa29400ae01e88a587d96d6bacab75fa8420",
+          "signature": "TUGhL74x6lt3wg3XccKFEz6cjmiV1DEn7s2UHpUBnxlUKpfwo/Zy3BmgEa1foAehqoxbzHmisWpKQjrajtgLCg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        },
+        "1.0.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 30027349,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.extension.pagespy/1.0.1.nfpkg",
+          "checksum": "afe8665d3ae39a6cce0808494ac23ea19cee3f62d52abb77ea3886f8a3c99f64",
+          "signature": "2zz2DvGsz1hQIQRiiIZRXQb02K7hkUy4jaV2uE9+I/Lgqd3dhUhL5CxJjI/CrUwXbZzFoZuPSbJWYRhl0CaqCg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-21T09:53:12.887Z"
+        }
+      },
+      "latestVersion": "1.0.1"
+    },
+    {
+      "id": "nf.gateway",
+      "name": "网关服务插件",
+      "description": "对外暴露系统功能接口（HTTP API + Socket.IO），支持外部网页通过 HTTP/Socket.IO 访问串口、TCP Socket、WebSocket、文件操作、打印等能力。",
+      "category": "gateway",
+      "type": "system",
+      "author": "南风-残雨",
+      "icon": "icon.png",
+      "homepage": "https://www.example.com/plugins/gateway",
+      "keywords": [],
+      "permissions": [
+        "network:request",
+        "ipc:register",
+        "storage:read",
+        "storage:write"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [
+            "connectSocket",
+            "connectWebSocket",
+            "monitorSerial",
+            "print",
+            "enablePlugin",
+            "disablePlugin"
+          ],
+          "degradeFlags": {
+            "queryOnly": true
+          },
+          "notice": "未激活：仅支持查询系统信息与列表，对外网关连接/打印/插件操作需激活"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 9719,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.gateway/1.0.0.nfpkg",
+          "checksum": "0269fb0f62abc1684d26c89b4dd7c400a5ec47f733c50498caaabf512a21c566",
+          "signature": "RlPoqF+ZR/H+WoPWN/6FNIIwOS+G31yUD4TQgdAKiGhJlqlOZoI6E0JPqyGcw12o075f6E47WbuioLFGxnROCw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        },
+        "1.0.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 1218392,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.gateway/1.0.1.nfpkg",
+          "checksum": "80ac30cbaa4c8a62b6b50007f0bf371b2ee7156c344b82a7811688f7556279ad",
+          "signature": "2BikpgMRK2lmy1WDm7ZXI3COEq2wLWoAnikTnH67jSAMEGDXnSj8JwbGvC62FiNrkd+e7pDb1WeaH/W2dYcjDA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-11-01T05:41:34.046Z"
+        }
+      },
+      "latestVersion": "1.0.1"
+    },
+    {
+      "id": "nf.hardware.mqtt",
+      "name": "MQTT通信插件",
+      "description": "提供 MQTT 3.1.1 客户端通信能力（发布/订阅），零依赖实现，支持 TCP/TLS 连接、自动重连与心跳保活。可与物联网设备、消息代理（如 EMQX、Mosquitto、EMQX Edge）通信，是 NF Client IoT 协议系列的第一步。",
+      "category": "socket",
+      "type": "hardware",
+      "author": "南风-残雨",
+      "icon": "icon.png",
+      "homepage": "https://www.example.com/plugins/mqtt",
+      "keywords": [],
+      "permissions": [
+        "hardware:socket",
+        "network:request",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [],
+          "degradeFlags": {
+            "maxConnections": 1
+          },
+          "notice": "未激活：MQTT 配置与诊断免费，最多建立 1 条连接，激活后不限"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 11549,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.mqtt/1.0.0.nfpkg",
+          "checksum": "bdf128c3a754c0eda21567b114ce3939e0b90e032c6919bc954386aa1bbdae13",
+          "signature": "eHIqqkof4eUtKPWhnXNM7wy8cF8kFunWdafjP77wFypG/4ACJb55VMnSn/6FLS383ABDJcEHqplPrGUoj2KUCA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.hardware.print",
+      "name": "打印服务插件",
+      "description": "提供打印服务能力，支持HTML/PDF/URL_PDF打印、Socket.IO打印服务端、NFPrint通用WebSocket打印服务、分片打印、打印队列等。支持hiprint等多项目通用打印。",
+      "category": "print",
+      "type": "hardware",
+      "author": "南风-残雨",
+      "icon": "icon.png",
+      "homepage": "https://www.example.com/plugins/print",
+      "keywords": [],
+      "permissions": [
+        "hardware:print",
+        "storage:read",
+        "ipc:register",
+        "network:request"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {},
+      "entrypoints": {
+        "main": "index.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "2.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 42290,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.print/2.0.0.nfpkg",
+          "checksum": "fd4753268ef872d6e244a51937a6a73a19193d726e0260469c95e62a9cef09d0",
+          "signature": "lqtBkRTjGM1AHZ+BHGz2ejo8C1t/yr7P5JOmvGNq4Xc4v8Iyx6R3dRC57LBUHQFsgaRrnH6tK/9YT0UhzmwuCw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        },
+        "2.0.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 1385104,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.print/2.0.1.nfpkg",
+          "checksum": "f73fb9eb23c6c81cfb71a411fb236043fa5c45a598a61300e71f471b42e23274",
+          "signature": "6Ye/mJSE1czEeEPcssm+ELf4piTGHptvbHDCT+f1Y6Bqwmh/0v/JN0twqm1sEIs0HARqR4TZSdn7gN+7q6YWAA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-21T09:53:12.887Z"
+        },
+        "2.0.2": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 1387219,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.print/2.0.2.nfpkg",
+          "checksum": "b008f8d1bd80fa28b143806396e3a25386d8166f2f70e8fc4e5e4434a96f7a7b",
+          "signature": "X6Yhwed1SSCmc8q9TLIXMsWbuWNQDbQsDeZdmkqqLodMmwvUvFytnZVm3yJ7XnuJRj6BCMcZDkdUGMzCzg/qAA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-11-01T05:41:34.046Z"
+        }
+      },
+      "latestVersion": "2.0.2"
+    },
+    {
+      "id": "nf.hardware.scale",
+      "name": "电子秤协议插件",
+      "description": "提供电子秤串口通信与协议解析能力，支持D12、IND245、TF2三种协议。从串口插件中拆分而来，按需安装。",
+      "category": "scale",
+      "type": "hardware",
+      "author": "南风-残雨",
+      "icon": "icon.png",
+      "homepage": "https://www.example.com/plugins/scale",
+      "keywords": [],
+      "permissions": [
+        "hardware:serial",
+        "hardware:scale",
+        "storage:read",
+        "storage:write",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [],
+          "degradeFlags": {
+            "maxConnections": 1
+          },
+          "notice": "未激活：电子秤配置查看免费，最多连接 1 台秤，激活后不限"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 6574,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.scale/1.0.0.nfpkg",
+          "checksum": "fb69ea053467e39b59f5c676a86079480e909a0371e4371a31d56aec970e8f79",
+          "signature": "6Tb+CtNKBW2Ig9Cja7g/ZcKAgmU8LOO2CDHe/OMpdLF8iPEujYfxgTjgtkQDmZA+9W/X6GgUcwiK7Tfj0BjqBg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        },
+        "1.0.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 853170,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.scale/1.0.1.nfpkg",
+          "checksum": "1c490133ec2d7dac952441c7280997de555538a7e5a7b8951c03cb0be1afffa5",
+          "signature": "2/WkuB4+QmhzmRqIEFJ7uWBm/3loztNtck3yM4uAW2zHmkmMsb9gOP7j1yJ+jthDSlgQIIMkH6DI7SaVb5JmDg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-21T09:53:12.887Z"
+        }
+      },
+      "latestVersion": "1.0.1"
+    },
+    {
+      "id": "nf.hardware.scanner",
+      "name": "扫描器协议插件",
+      "description": "提供扫描器/读卡器串口通信与协议解析能力，支持CardQrCodeReader、CardQrCodeReader2、CodeReader三种类型。从串口插件中拆分而来，按需安装。",
+      "category": "scanner",
+      "type": "hardware",
+      "author": "南风-残雨",
+      "icon": "icon.png",
+      "homepage": "https://www.example.com/plugins/scanner",
+      "keywords": [],
+      "permissions": [
+        "hardware:serial",
+        "hardware:scanner",
+        "storage:read",
+        "storage:write",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [],
+          "degradeFlags": {
+            "maxConnections": 1
+          },
+          "notice": "未激活：扫描器配置查看免费，最多连接 1 台扫描器/读卡器，激活后不限"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 6158,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.scanner/1.0.0.nfpkg",
+          "checksum": "ef364eff1a468414647d6fe93bc9c345e8997c4f1188c1dbb54a373010c9b0ff",
+          "signature": "jwylRxtfewYubjhwkKoH2TO4GQxe70kuOwYPdyRibU+25WdxrGTkirqhAQM91eBaIygj0vtr2edUCnsGOrflBQ==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        },
+        "1.0.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 852791,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.scanner/1.0.1.nfpkg",
+          "checksum": "28754f7f2fbe38292858086dba84c181ad9327edc4d841e06e53d15d0a309eba",
+          "signature": "Xg0wbdni7Ugmgw08n1k6+OQDmuclRi6LgwOY1LbH76eak5Syuvu7aKgzQh1DmwRJP1xyLRQR24ntqnbk6h2uAg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-21T09:53:12.887Z"
+        }
+      },
+      "latestVersion": "1.0.1"
+    },
+    {
+      "id": "nf.hardware.serial",
+      "name": "串口通信插件",
+      "description": "提供串口通信能力，支持电子秤、读卡器、条码扫描器等设备协议解析。从主程序剥离后可独立升级。",
+      "category": "serial",
+      "type": "hardware",
+      "author": "南风-残雨",
+      "icon": "icon.png",
+      "homepage": "https://www.example.com/plugins/serial",
+      "keywords": [],
+      "permissions": [
+        "hardware:serial",
+        "storage:read",
+        "storage:write",
+        "job:exec",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [],
+          "degradeFlags": {
+            "maxConnections": 1
+          },
+          "notice": "未激活：串口列表查看免费，最多连接 1 个串口，激活后不限"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js",
+        "job": "jobs/serial-job.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 8465,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.serial/1.0.0.nfpkg",
+          "checksum": "e5f64a51377d6b42b7f7158f63f2d96946645ede0acc306c567c777025d6dfab",
+          "signature": "44khvwSIrfda4f3R5YmMomLDz7zHvbRKKxu0cy+45RXZ6DJmhP0RQW0Odg5CS5A4mf26fNWLUVQ31kCqGCDJCA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        },
+        "1.0.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 855075,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.serial/1.0.1.nfpkg",
+          "checksum": "5906f66248184775272613b024492b91e088c33348aa46bba12f76b6a1006f10",
+          "signature": "5GzEqK6LO7aVFIeiABELtEwCsys2rIOZwrW7Bv6AvVXgmKYe5VOpIPzWoJOJW1xpf/iplcC+5rravO3HoO2VDg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-21T09:53:12.887Z"
+        }
+      },
+      "latestVersion": "1.0.1"
+    },
+    {
+      "id": "nf.hardware.simulator",
+      "name": "模拟硬件控制台",
+      "description": "可视化硬件模拟控制台，支持手动输入数据、多设备同屏操作、场景编排",
+      "category": "tool",
+      "type": "app",
+      "author": "NF Team",
+      "icon": "icon.svg",
+      "homepage": "",
+      "keywords": [
+        "模拟",
+        "硬件",
+        "串口",
+        "Socket",
+        "调试",
+        "开发"
+      ],
+      "permissions": [
+        "storage:read",
+        "storage:write",
+        "network:request",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [
+            "startServer",
+            "batchSimulate",
+            "scenarioOrchestrate"
+          ],
+          "degradeFlags": {},
+          "notice": "未激活：手动模拟可用，多设备场景编排需激活"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/index.html"
+      },
+      "ui": {
+        "width": 1200,
+        "height": 800,
+        "title": "模拟硬件控制台",
+        "icon": "icon.svg",
+        "minWidth": 900,
+        "minHeight": 600,
+        "resizable": true,
+        "frame": true
+      },
+      "main": "index.js",
+      "versions": {
+        "1.0.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 24078,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.simulator/1.0.1.nfpkg",
+          "checksum": "cb7c9be878bccb5c48464454a46a974bb49f0d131b1a72785e291472b53e853d",
+          "signature": "wWbsPEmrSI81LfeO0zNM4gT5r811OAAvlw6Q8dYlAvKncwkknDlelsK7N8i3XOZ4W6wpLvt0p+liBHayZq1/AQ==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        },
+        "1.0.2": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 872406,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.simulator/1.0.2.nfpkg",
+          "checksum": "c46fc2b3acb902c6bcce6387ce386debc94dec89c8bdd1f84f0f626bf03cdb00",
+          "signature": "DFY0VszczRaJ7DGodkzLrqeRidqrQ+rz/IiEuQUsj6vXWCaoI2bDSbx3En7T3iZeJAfbNYdJCRWKLSr/cYpvCg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-21T09:53:12.887Z"
+        },
+        "1.0.3": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 872602,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.simulator/1.0.3.nfpkg",
+          "checksum": "5592753d47136b216e61055addb330d68ccdfa74f05cbc6367dfc706ea9cb6e9",
+          "signature": "HLzdpGaCd1OIRloILLwxxeZ0ZQfE0Dr2q+3E58+3AlduzI+I+I7ohVntsP+3LcAuC4Fh9OYHJYrjslxJjKGUDA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-11-01T05:41:34.046Z"
+        }
+      },
+      "latestVersion": "1.0.3"
+    },
+    {
+      "id": "nf.hardware.socket",
+      "name": "TCP Socket通信插件",
+      "description": "提供TCP Socket通信能力，支持车牌识别摄像头、RFID、继电器、网络红外等设备。从主程序剥离后可独立升级。",
+      "category": "socket",
+      "type": "hardware",
+      "author": "南风-残雨",
+      "icon": "icon.png",
+      "homepage": "https://www.example.com/plugins/socket",
+      "keywords": [],
+      "permissions": [
+        "hardware:socket",
+        "storage:read",
+        "storage:write",
+        "network:request",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [],
+          "degradeFlags": {
+            "maxConnections": 1
+          },
+          "notice": "未激活：Socket 配置查看免费，最多建立 1 条 TCP 连接，激活后不限"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 13915,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.socket/1.0.0.nfpkg",
+          "checksum": "50409d7bbe50468f838ae30956d58a7680f6a2e2ba84ec43fe389532981c00de",
+          "signature": "E8elLXN5SoOEK/+cPtMLoFEafCNSiACrvUlgRQ6E+nhRgTXSiKTn6KJOfjhfg0lfyfPFmbVxCsN7V7xyRAFpBA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.hardware.streamer",
+      "name": "RTSP流媒体插件",
+      "description": "提供RTSP流转MJPEG转码能力，支持多路并发、自动重试、局域网访问。基于fluent-ffmpeg实现，从主程序剥离后可独立升级。",
+      "category": "streamer",
+      "type": "hardware",
+      "author": "南风-残雨",
+      "icon": "icon.png",
+      "homepage": "https://www.example.com/plugins/streamer",
+      "keywords": [],
+      "permissions": [
+        "hardware:streamer",
+        "storage:read",
+        "storage:write",
+        "network:request",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [],
+          "degradeFlags": {
+            "maxStreams": 1
+          },
+          "notice": "未激活：转码配置查看免费，最多转码 1 路 RTSP 流，激活后不限"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 8634,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.streamer/1.0.0.nfpkg",
+          "checksum": "e8d9487c4a4d1f3bd0150ac8f53c98f34a46b00147b17c65252236a2c5ee5d8e",
+          "signature": "OTH7Vti9HD1D+c/ru8xqFI9YxGOB/hCLRIBR9n5h6TKSURYL13SF8UszAI5/X/CPcCDruWAOIxslCugZlS2FCQ==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        },
+        "1.0.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 1811709,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.streamer/1.0.1.nfpkg",
+          "checksum": "a44afcefaa1d0fa23fb0aba742e79aa4421448beda0e28f29330f1b93429418d",
+          "signature": "QW5tem5oQs1pN+U+nbu3t5AMXJtXatL+QS3DJilUg3dOQ1a6oIjp7jnyExpJxkwFRI4drfWyVL2azZF3SjCSCQ==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-21T09:53:12.887Z"
+        },
+        "1.0.2": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 1811785,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.streamer/1.0.2.nfpkg",
+          "checksum": "3627866a9e239933a224b73823edfe02158ec6aea5698c2dfa0758a55d21f5c4",
+          "signature": "BFUXv6Me/EacndR58MqbBgZWV4FQmTPi30h8GKmWnskc0Rwm8qsXdtJ2eerkmlsfN3DkDg/HxdKms26i2zkkCg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-11-01T05:41:34.046Z"
+        }
+      },
+      "latestVersion": "1.0.2"
+    },
+    {
+      "id": "nf.hardware.websocket",
+      "name": "WebSocket通信插件",
+      "description": "提供WebSocket客户端通信能力，支持与服务端建立长连接、消息收发、自动重连等。从主程序剥离后可独立升级。",
+      "category": "websocket",
+      "type": "hardware",
+      "author": "南风-残雨",
+      "icon": "icon.png",
+      "homepage": "https://www.example.com/plugins/websocket",
+      "keywords": [],
+      "permissions": [
+        "hardware:websocket",
+        "network:request",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [],
+          "degradeFlags": {
+            "maxConnections": 1
+          },
+          "notice": "未激活：WebSocket 配置与诊断免费，最多建立 1 条长连接，激活后不限"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 5691,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.websocket/1.0.0.nfpkg",
+          "checksum": "1ed28cbdf9e22b177ab5c5771884cdf7470af5860686b2b1bdec864e579e447a",
+          "signature": "RRxbV6jSihz5bIvU12xWQHpWHx7u9hhFKqIsgzAEMyDEUhpJDV4WEv4q93FWj1CG5yT9gyJoIm2EZEydiLF/Bw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        },
+        "1.0.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 48430,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.hardware.websocket/1.0.1.nfpkg",
+          "checksum": "f26bccecda542ae7aee8b852c134678c77909d99439fa5dcb2247b446ff54879",
+          "signature": "sTZCCHvZQeCWvMXVF52OYcIYZl3cLMemOEICkB82cjUKFZgV0Dk5Qvs0uoOISalMe46KMkVu4H+2qqNWaNAKBQ==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-21T09:53:12.887Z"
+        }
+      },
+      "latestVersion": "1.0.1"
+    },
+    {
+      "id": "nf.media.go2rtc",
+      "name": "go2rtc流媒体中转服务插件",
+      "description": "提供go2rtc流媒体中转服务进程管理，支持RTSP/RTMP/HLS/WebRTC/MSE/MJPEG多协议。基于Go实现，内存占用低，适合低配电脑。",
+      "category": "streamer",
+      "type": "hardware",
+      "author": "南风-残雨",
+      "icon": "icon.png",
+      "homepage": "https://github.com/AlexxIT/go2rtc",
+      "keywords": [],
+      "permissions": [
+        "hardware:streamer",
+        "network:request",
+        "storage:read",
+        "storage:write",
+        "job:exec",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [],
+          "degradeFlags": {
+            "maxStreams": 1
+          },
+          "notice": "未激活：go2rtc服务可用，最多添加1条流，激活后不限"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 7827759,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.media.go2rtc/1.0.0.nfpkg",
+          "checksum": "b882e803ef3e17ba4011167c304ce1d0281ba38b944171a4341f5d8592d1ffd6",
+          "signature": "az6IGcVMx9j/da3a0PXMjDdTjJ8SWUWTPciPbylv6wmLbFuP9ZN8srxr0QLFzrNFj9dhNdOmUSWs4kufI1A7Bg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.media.mtx",
+      "name": "MediaMTX流媒体中转服务插件",
+      "description": "提供MediaMTX（原rtsp-simple-server）流媒体中转服务进程管理，支持RTSP/RTMP/HLS/WebRTC多协议。从主程序剥离后可按需下载，减小初始包体积约15-25MB。",
+      "category": "streamer",
+      "type": "hardware",
+      "author": "南风-残雨",
+      "icon": "icon.png",
+      "homepage": "https://www.example.com/plugins/media-mtx",
+      "keywords": [],
+      "permissions": [
+        "hardware:streamer",
+        "storage:read",
+        "storage:write",
+        "job:exec",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [
+            "openExe"
+          ],
+          "degradeFlags": {},
+          "notice": "未激活：MediaMTX流媒体服务需激活后使用"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 8122288,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.media.mtx/1.0.0.nfpkg",
+          "checksum": "71969950e085f8816c2e0181bb6c34b08a432e5b0d1353443daf9be73f7ac60a",
+          "signature": "oRKMHf/hYlua+k1hiTSAQ/OODedC7tDWHhf+jMDsktB1eTnXvNOj1ECuZ86JWobi3mwmB7Mb6GLSu8flpCQsAQ==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.media.tts",
+      "name": "语音合成服务插件",
+      "description": "基于Windows PowerShell + SAPI.SPVoice的文本转语音服务，支持语速调节、播放设备选择。从主程序剥离后可按需下载，减小初始包体积约1MB。",
+      "category": "media",
+      "type": "system",
+      "author": "南风-残雨",
+      "icon": "icon.png",
+      "homepage": "https://www.example.com/plugins/media-tts",
+      "keywords": [],
+      "permissions": [
+        "system:speech",
+        "storage:read",
+        "storage:write",
+        "job:exec",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {},
+      "entrypoints": {
+        "main": "index.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 3547,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.media.tts/1.0.0.nfpkg",
+          "checksum": "ca853b07e1f96478890144d9e55b92ca073348aabf078f88b070c29dbab7a955",
+          "signature": "0aHUhHN8/9JFY0x9JtfdTW/v07L4JvJeoC586B8tB5gF+bp3LFgOmfw+mIXkBS8uVkOo/pHMFcesAiLRYnuhBQ==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.skill.text",
+      "name": "文本智能技能",
+      "description": "示范 skill 类型插件：基于本地/云端推理的文本总结与翻译",
+      "category": "tool",
+      "type": "skill",
+      "author": "NF Team",
+      "icon": "",
+      "homepage": "",
+      "keywords": [],
+      "permissions": [
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8"
+      },
+      "limits": {},
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/admin/index.html"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 5040,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.skill.text/1.0.0.nfpkg",
+          "checksum": "ee2139bb9fa85fd2b0cdd02bb97e6897979f4a760f426a0cb47b772df530b498",
+          "signature": "aDCHV4+vv02dKp5wuhPCeVsT/rv0+HlJEBmXvEah0UCIy6BDgSr2dKe8rqa/JPHp5MV5ivoklCGUB9VmBtKVAA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.system.dbtool",
+      "name": "数据库管理工具",
+      "description": "访问并操作 data/db 目录下的所有本地 SQLite 数据库：列举数据库/表、查看表结构、执行查询与读写（DDL/DML）。",
+      "category": "工具",
+      "type": "app",
+      "author": "nf-client",
+      "icon": "icon.svg",
+      "homepage": "",
+      "keywords": [
+        "数据库",
+        "database",
+        "sqlite",
+        "sql",
+        "表",
+        "查询",
+        "db",
+        "数据管理"
+      ],
+      "permissions": [
+        "ipc:register",
+        "database:manage"
+      ],
+      "engines": {},
+      "limits": {},
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/dist/index.html"
+      },
+      "ui": {
+        "width": 980,
+        "height": 680,
+        "title": "数据库管理工具",
+        "minWidth": 720,
+        "minHeight": 520,
+        "resizable": true,
+        "frame": true
+      },
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 8993,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.system.dbtool/1.0.0.nfpkg",
+          "checksum": "21390695fdf1adb8d3d5d1c7cf83efb8adb4e0e896d4638bb790d584b4196bc7",
+          "signature": "D7mMrgR7JIeYkXcbr7hPkgAQ2F7jKyLlAc/2O5khkyceDOi+2vVVJGza9KduzKzmkapGoo3d5NvSeVutIqf5Cg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.system.win-service",
+      "name": "Windows服务管理插件",
+      "description": "基于nssm(Non-Sucking Service Manager)提供Windows系统服务管理能力，支持安装/卸载/启动/停止/重启/状态查询等操作。从主程序剥离后可按需下载，减小初始包体积约3MB。",
+      "category": "service",
+      "type": "system",
+      "author": "南风-残雨",
+      "icon": "icon.png",
+      "homepage": "https://www.example.com/plugins/win-service",
+      "keywords": [],
+      "permissions": [
+        "system:service",
+        "storage:read",
+        "storage:write",
+        "job:exec",
+        "ipc:register"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {
+        "unactivated": {
+          "disabledMethods": [
+            "install",
+            "start",
+            "stop",
+            "restart",
+            "uninstall"
+          ],
+          "degradeFlags": {
+            "queryOnly": true
+          },
+          "notice": "未激活：仅支持查询服务状态，安装/启停/卸载系统服务需激活"
+        }
+      },
+      "entrypoints": {
+        "main": "index.js"
+      },
+      "ui": {},
+      "main": "index.js",
+      "versions": {
+        "1.0.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 243700,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.system.win-service/1.0.0.nfpkg",
+          "checksum": "b2aeba98b69eef5b68833cee1ea5a62e765f8bf8e1c6a5dc51b91041850d7bfa",
+          "signature": "d2KQABD7mA1o841E/Uq/7Sfg4fcnndymhMSI6y4LQsT70cZMesaXjhLQZbRssUk80divuoe/3TecoDaMsTweCw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-10-20T02:41:16.539Z"
+        }
+      },
+      "latestVersion": "1.0.0"
+    }
+  ]
+}

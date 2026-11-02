@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-01T06:31:06.670Z",
+  "updatedAt": "2026-11-02T01:06:53.089Z",
   "totalPlugins": 38,
   "categories": {
     "admin": {
@@ -786,9 +786,22 @@
           "encrypted": true,
           "encryptionVersion": 1,
           "publishedAt": "2026-11-01T06:31:06.670Z"
+        },
+        "1.0.20": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 4416380,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.nfprint/1.0.20.nfpkg",
+          "checksum": "ff38fb33a76590741348b577be80e4f538642b99e2a57b7ea6f7a62c7583d993",
+          "signature": "jS/j1jQ9iqbVjcAGLwV18gBO/PtJhOnBofpO/fCnpuF692sNm3gPZ0dNBKoB48Pdp/5i42V9VWdSi66htiChBg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-11-02T01:06:53.089Z"
         }
       },
-      "latestVersion": "1.0.17"
+      "latestVersion": "1.0.20"
     },
     {
       "id": "nf.app.ocr",
