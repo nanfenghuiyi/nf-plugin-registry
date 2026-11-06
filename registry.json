@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-06T08:51:54.817Z",
+  "updatedAt": "2026-11-06T10:02:13.014Z",
   "totalPlugins": 39,
   "categories": {
     "admin": {
@@ -2693,9 +2693,22 @@
           "encrypted": true,
           "encryptionVersion": 1,
           "publishedAt": "2026-11-06T08:51:54.817Z"
+        },
+        "1.3.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 20107261,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.tools.brimdeck/1.3.1.nfpkg",
+          "checksum": "56c6a49a506a34c08b3c02da7f4ec05d832625dd70c13c4c0c539ba2ea40190e",
+          "signature": "6QdjxkayvtlE5JpWiY3juzvTomCL+maYO+HUWFjbGCmQAko8tmCnUIckzA5AfD4n9Ne57sOXbhJpvBNZpkPSCQ==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-11-06T10:02:13.014Z"
         }
       },
-      "latestVersion": "1.3.0",
+      "latestVersion": "1.3.1",
       "name": "BrimDeck 灵动岛",
       "description": "插件自采 CPU、内存、磁盘、网络与可选硬件指标，并提供 WorkBuddy / Trae CN 积分手动录入；外部 BrimDeck 托管仅作为默认关闭的兜底。",
       "category": "tool",
@@ -2709,7 +2722,8 @@
         "storage:read",
         "storage:write",
         "ipc:register",
-        "window:manage"
+        "window:manage",
+        "network:request"
       ],
       "engines": {
         "nf-client": ">=1.0.8",

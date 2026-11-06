@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-06T08:51:54.850Z",
+  "updatedAt": "2026-11-06T10:02:13.040Z",
   "plugins": {
     "app/nf.app.admin": "aa547efe262aca80691e80a2813ecefd9348561c4a5947b634e036887ad1a4db",
     "app/nf.app.edge-bookmarks": "5a47941931dc60af429bd043f40cd8b65ec1eead6e578d9a61981d29e1cc8f1e",
@@ -39,6 +39,6 @@
     "system/nf.gateway": "d62d3f45e836b4ef3775aecac98e925af1d0b33d9bc152f762cc657d16a2f3bb",
     "system/nf.system.dbtool": "4a61a74fca9ce05d7a0f7890e78d67cdb2df261a97038791609e5967bfcd2284",
     "system/nf.system.win-service": "8564ba1002ab1133de7a3cff5b8a831b643dfaa4c544aecd658012a14c51b5a3",
-    "tools/nf.tools.brimdeck": "1199f8c9920ecae6fb7fbecafc5dc38e64f316fbb44c95831686ddf0b4a942c2"
+    "tools/nf.tools.brimdeck": "8d5884a33a3544fe8551a842b9adc9a5fee277c4a0394e47f2d98f508b5a250d"
   }
 }
