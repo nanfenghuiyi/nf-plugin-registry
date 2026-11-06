@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-02T02:52:24.280Z",
+  "updatedAt": "2026-11-06T08:51:54.850Z",
   "plugins": {
     "app/nf.app.admin": "aa547efe262aca80691e80a2813ecefd9348561c4a5947b634e036887ad1a4db",
     "app/nf.app.edge-bookmarks": "5a47941931dc60af429bd043f40cd8b65ec1eead6e578d9a61981d29e1cc8f1e",
@@ -9,7 +9,7 @@
     "app/nf.app.live2d-pet": "d8361e02a21fc003599f793b334ccd04bbe539558f7bb45de5248b2f55b0daa1",
     "app/nf.app.local-search": "1e5cdf8ca39e9e06b26c4a477496c13af6d8d068999f36e768accd2f69774b39",
     "app/nf.app.localweb": "ab625dbc3f547e1df8e63996caf42f91f13aacc052a9e50428e5a12dda9d300d",
-    "app/nf.app.nfprint": "e3cf82070ff079ce4dac180d3a72815af766dbc56dc0bcfea03b821e64d27fbf",
+    "app/nf.app.nfprint": "517b1257826fbd696b93ce2b539a7a8c8c1a858ab99f9193a1aab8a6a3f241f4",
     "app/nf.app.ocr": "79a9c7240e8f450456678430854e94a1c1e6cb969d15a3f2e212eabc68ca27fa",
     "app/nf.app.photo": "7d063c1bea61f1344e1360916f938111db1e4c29820ecba21c096ab63fc3fe68",
     "app/nf.app.planner": "fea2aeefa735e77a4db8bfe1366162ba0bba9f5e612e3756204d0b8c3cfa6367",
@@ -38,6 +38,7 @@
     "skill/nf.skill.text": "2c5f675720c535fb17abf48559a9a8d0e1067dc3c882fb48891330c4efe0e521",
     "system/nf.gateway": "d62d3f45e836b4ef3775aecac98e925af1d0b33d9bc152f762cc657d16a2f3bb",
     "system/nf.system.dbtool": "4a61a74fca9ce05d7a0f7890e78d67cdb2df261a97038791609e5967bfcd2284",
-    "system/nf.system.win-service": "8564ba1002ab1133de7a3cff5b8a831b643dfaa4c544aecd658012a14c51b5a3"
+    "system/nf.system.win-service": "8564ba1002ab1133de7a3cff5b8a831b643dfaa4c544aecd658012a14c51b5a3",
+    "tools/nf.tools.brimdeck": "1199f8c9920ecae6fb7fbecafc5dc38e64f316fbb44c95831686ddf0b4a942c2"
   }
 }

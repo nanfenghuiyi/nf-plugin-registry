@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-02T02:52:24.245Z",
-  "totalPlugins": 38,
+  "updatedAt": "2026-11-06T08:51:54.817Z",
+  "totalPlugins": 39,
   "categories": {
     "admin": {
       "name": "管理后台",
@@ -9,7 +9,7 @@
     },
     "tool": {
       "name": "工具",
-      "count": 19
+      "count": 20
     },
     "app": {
       "name": "应用",
@@ -851,9 +851,22 @@
           "encrypted": true,
           "encryptionVersion": 1,
           "publishedAt": "2026-11-02T02:52:24.245Z"
+        },
+        "1.0.30": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 3985016,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.nfprint/1.0.30.nfpkg",
+          "checksum": "6f6459cba495d53344edccf04b529e5369c9f689bf61775e068fdd105414dedd",
+          "signature": "SMOFsT8V5p3XcebWtNkisyLKoUOWdktGvKzfQtfnpp09SWJoZ/UI5vZoI8rWppGw8ZeaoRMEFBFXSD9DbduTBA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-11-06T08:51:54.817Z"
         }
       },
-      "latestVersion": "1.0.28"
+      "latestVersion": "1.0.30"
     },
     {
       "id": "nf.app.ocr",
@@ -2664,6 +2677,59 @@
         }
       },
       "latestVersion": "1.0.0"
+    },
+    {
+      "id": "nf.tools.brimdeck",
+      "versions": {
+        "1.3.0": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 20066608,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.tools.brimdeck/1.3.0.nfpkg",
+          "checksum": "137785a15834a8d5602e2c989c05f33db876fd3c3bd3f8d9a12336ff1f9dea6f",
+          "signature": "tL6HO05iUSUpwOL5PlMHLOtUTT87LjnmcdISnzwPufrImA0YdOLokcGsJa2R4zkArGsicq4NBDnBY+nOOoXEDg==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-11-06T08:51:54.817Z"
+        }
+      },
+      "latestVersion": "1.3.0",
+      "name": "BrimDeck 灵动岛",
+      "description": "插件自采 CPU、内存、磁盘、网络与可选硬件指标，并提供 WorkBuddy / Trae CN 积分手动录入；外部 BrimDeck 托管仅作为默认关闭的兜底。",
+      "category": "tool",
+      "type": "app",
+      "author": "nf-client",
+      "icon": "",
+      "homepage": "https://github.com/MoFeng2223/BrimDeck",
+      "keywords": [],
+      "permissions": [
+        "job:exec",
+        "storage:read",
+        "storage:write",
+        "ipc:register",
+        "window:manage"
+      ],
+      "engines": {
+        "nf-client": ">=1.0.8",
+        "electron": "^32.1.0",
+        "node": ">=20.16.0"
+      },
+      "limits": {},
+      "entrypoints": {
+        "main": "index.js",
+        "renderer": "renderer/index.html"
+      },
+      "ui": {
+        "managedByPlugin": true,
+        "width": 560,
+        "height": 92,
+        "title": "BrimDeck 灵动岛",
+        "resizable": false,
+        "frame": false
+      },
+      "main": "index.js"
     }
   ]
 }
