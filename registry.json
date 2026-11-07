@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-06T10:02:13.014Z",
+  "updatedAt": "2026-11-07T06:39:13.399Z",
   "totalPlugins": 39,
   "categories": {
     "admin": {
@@ -432,7 +432,7 @@
     {
       "id": "nf.app.live2d-pet",
       "name": "Live2D 桌宠",
-      "description": "基于 Cubism SDK 的 Live2D 桌面宠物：键盘按键驱动 Live2D 模型参数 + 按键可视化 + 鼠标跟随，支持 BongoCat 兼容模型包。不依赖 nf.plugin.live2d-runtime。",
+      "description": "基于 Cubism SDK 的 Live2D 桌面宠物：键盘按键驱动 Live2D 模型参数 + 按键可视化 + 鼠标跟随，支持 BongoCat 兼容模型包，并在一行状态条里并列展示 DeepSeek 账户余额与智谱 Coding Plan 配额/用量（点击展开按来源分组明细）。不依赖 nf.plugin.live2d-runtime。",
       "category": "tool",
       "type": "app",
       "author": "NF Team",
@@ -455,7 +455,8 @@
         "window:manage",
         "tray:menu",
         "system:globalInput",
-        "job:exec"
+        "job:exec",
+        "network:request"
       ],
       "engines": {
         "nf-client": ">=1.0.8"
@@ -494,9 +495,22 @@
           "encrypted": true,
           "encryptionVersion": 1,
           "publishedAt": "2026-10-20T02:41:16.539Z"
+        },
+        "1.2.1": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 36728288,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.live2d-pet/1.2.1.nfpkg",
+          "checksum": "535974b3b35bac96f8ba7bbe5f8a0badb5ed264585eb9b062aa8cf61091b63bc",
+          "signature": "7XVhBAuzOnR9m4gGYFowFushHn/2DHBhupPRYskuHk+0SqxTmj4nfp4RIoXMOonVlQ5lQJuDIbQsUEcTE4PNCw==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-11-07T06:39:13.399Z"
         }
       },
-      "latestVersion": "1.0.1"
+      "latestVersion": "1.2.1"
     },
     {
       "id": "nf.app.local-search",
