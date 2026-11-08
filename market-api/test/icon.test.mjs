@@ -9,7 +9,8 @@
  *   2. 插件不存在 / 已下架：404
  *   3. manifest.icon 命中：200 + 正确 Content-Type/Cache-Control
  *   4. 声明图标缺失：按常见命名回退 icon.svg
- *   5. 无任何图标文件：404
+ *   5. 未声明图标且 png/svg 并存：png 优先
+ *   6. 无任何图标文件：404
  *
  * 运行：npm test（Node 22 原生 type-stripping）
  */
@@ -131,6 +132,44 @@ test('声明图标缺失时按常见命名回退', async () => {
     // 先尝试声明的 icon.png（raw + jsdelivr 均失败），再回退 icon.svg
     assert.ok(seen.some((u) => u.endsWith('/nf.app.fallback/icon.png')));
     assert.ok(seen.some((u) => u.endsWith('/nf.app.fallback/icon.svg')));
+  } finally {
+    restore();
+  }
+});
+
+test('未声明图标且 png/svg 并存时 png 优先', async () => {
+  const registry = {
+    ...ICON_REGISTRY,
+    plugins: [
+      {
+        id: 'nf.app.both',
+        name: '双图标插件',
+        description: '未声明 icon，目录内 png 与 svg 并存',
+        category: 'app',
+        type: 'app',
+        icon: '',
+        versions: { '1.0.0': { checksum: 'c'.repeat(64), size: 100 } },
+        latestVersion: '1.0.0',
+      },
+    ],
+  };
+  const png = 'PNG-BYTES';
+  const { seen, restore } = stubFetch({
+    registry,
+    files: {
+      [`${RAW_PREFIX}nf.app.both/icon.png`]: () => new Response(png, { status: 200 }),
+      [`${RAW_PREFIX}nf.app.both/icon.svg`]: () => new Response(SVG, { status: 200 }),
+    },
+  });
+  try {
+    await resetRegistryCache();
+    const resp = await getIcon('/api/icon?id=nf.app.both');
+    assert.equal(resp.status, 200);
+    assert.equal(resp.headers.get('Content-Type'), 'image/png');
+    assert.equal(await resp.text(), png);
+    // 首个回源即 png，未先尝试 svg
+    assert.ok(seen[0].endsWith('/nf.app.both/icon.png'), `首个回源应为 png，实际 ${seen[0]}`);
+    assert.ok(!seen.some((u) => u.endsWith('/icon.svg')));
   } finally {
     restore();
   }

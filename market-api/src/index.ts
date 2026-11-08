@@ -333,8 +333,8 @@ async function proxyPackage(env: Env, target: string): Promise<Response | null> 
 
 // ---------- 图标（构建时导出的明文图标回源代理） ----------
 
-/** 与 registry 构建脚本 ICON_FILE_CANDIDATES 保持一致 */
-const ICON_FILE_CANDIDATES = ['icon.svg', 'icon.png', 'icon.webp', 'icon.jpg', 'icon.jpeg'];
+/** 与 registry 构建脚本 ICON_FILE_CANDIDATES 保持一致（png 优先，svg 兜底旧包） */
+const ICON_FILE_CANDIDATES = ['icon.png', 'icon.webp', 'icon.jpg', 'icon.jpeg', 'icon.svg'];
 
 const ICON_CONTENT_TYPES: Record<string, string> = {
   svg: 'image/svg+xml',
