@@ -26,6 +26,7 @@ const JavaScriptObfuscator = require('javascript-obfuscator');
 const { createZip } = require('../lib/zip');
 const signLib = require('../lib/sign');
 const encryptLib = require('../lib/encrypt');
+const bundleLib = require('../lib/bundle');
 const registrySig = require('../lib/registrySig');
 
 // ============ 配置 ============
@@ -43,8 +44,9 @@ const EXCLUDE = new Set(['.git', '.DS_Store', 'package-lock.json']);
 const NO_OBFUSCATE_PREFIX = 'node_modules/';
 
 // 插件图标候选文件名：.nfpkg 整体加密，市场端无法解包取图标，
-// 构建时把图标以明文复制到 packages/<id>/ 供市场 API 分发
-const ICON_FILE_CANDIDATES = ['icon.svg', 'icon.png', 'icon.webp', 'icon.jpg', 'icon.jpeg'];
+// 构建时把图标以明文复制到 packages/<id>/ 供市场 API 分发。
+// png 优先（Tauri 原生图标只认 png/ico），svg 留在末尾作为旧包兜底
+const ICON_FILE_CANDIDATES = ['icon.png', 'icon.webp', 'icon.jpg', 'icon.jpeg', 'icon.svg'];
 
 // GitHub 仓库信息
 const GITHUB_OWNER = 'nanfenghuiyi';
@@ -88,14 +90,27 @@ function err(msg) {
   process.stderr.write('错误: ' + msg + '\n');
 }
 
-function walk(dir, base, acc) {
+/**
+ * 递归收集文件
+ * @param {string} dir 当前目录
+ * @param {string} base 根目录（用于计算包内相对路径）
+ * @param {Array<{name: string, data: Buffer}>} acc 结果累积
+ * @param {{skip?: Set<string>, skipPrefixes?: string[]}} [opts]
+ *        skip：精确跳过的包内路径（已被 bundle 吞并的源文件）；
+ *        skipPrefixes：跳过的目录前缀（如 `node_modules/`，已无需分发）
+ */
+function walk(dir, base, acc, opts) {
   if (!fs.existsSync(dir)) return;
+  const skip = (opts && opts.skip) || null;
+  const skipPrefixes = (opts && opts.skipPrefixes) || [];
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     if (EXCLUDE.has(entry.name)) continue;
     const full = path.join(dir, entry.name);
     const rel = path.relative(base, full).split(path.sep).join('/');
+    if (skip && skip.has(rel)) continue;
+    if (skipPrefixes.some((pre) => rel.startsWith(pre) || `${rel}/`.startsWith(pre))) continue;
     if (entry.isDirectory()) {
-      walk(full, base, acc);
+      walk(full, base, acc, opts);
     } else if (entry.isFile()) {
       if (rel.endsWith('.zip')) continue;
       acc.push({ name: rel, data: fs.readFileSync(full) });
@@ -140,7 +155,11 @@ function ensureDependencies(pluginDir) {
   }
 }
 
-/** 混淆配置：中等强度，不破坏插件执行 */
+/**
+ * 混淆配置：中等强度，不破坏插件执行
+ *
+ * stringArray 只对「按文件混淆」的产物安全：单文件体量小，字符串表规模有限。
+ */
 const OBFUSCATOR_OPTIONS = {
   controlFlowFlattening: false,
   deadCodeInjection: false,
@@ -153,18 +172,84 @@ const OBFUSCATOR_OPTIONS = {
 };
 
 /**
+ * 打包产物专用混淆配置：关闭 stringArray。
+ *
+ * 实测（esbuild bundle 775 KB + stringArray/base64）：
+ * - 首次访问 require 需 1146 ms（字符串表在加载期构建，叠加 Defender 扫描）
+ * - 关闭 stringArray 后仅 128 ms，且体积反而更小（775 KB → 667 KB）
+ * 标识符重命名与压缩仍生效，另有 .nfpkg AES 加密兜底。
+ */
+const OBFUSCATOR_OPTIONS_BUNDLE = {
+  ...OBFUSCATOR_OPTIONS,
+  stringArray: false,
+  rotateStringArray: false,
+};
+
+/**
  * 对 JS 源码做混淆
  * @param {string} source - 源码
+ * @param {'file'|'bundle'} [profile] - file：按文件混淆；bundle：打包产物（关闭 stringArray）
  * @returns {string} 混淆后的代码（失败时返回原文）
  */
-function obfuscateSource(source) {
+function obfuscateSource(source, profile) {
+  const options = profile === 'bundle' ? OBFUSCATOR_OPTIONS_BUNDLE : OBFUSCATOR_OPTIONS;
   try {
-    const result = JavaScriptObfuscator.obfuscate(source, OBFUSCATOR_OPTIONS);
+    const result = JavaScriptObfuscator.obfuscate(source, options);
     return result.getObfuscatedCode();
   } catch (e) {
     err('混淆失败: ' + e.message);
     return source;
   }
+}
+
+/**
+ * 收集插件待打包文件：安装依赖 →（可选）esbuild 打包 → 混淆。
+ *
+ * 顺序不可颠倒：混淆会把 `require('socket.io')` 变成 `require(_0x..(0x1))`，
+ * bundler 无法静态解析依赖图。打包产物同时替换入口文件，
+ * 被吞并的源文件与 node_modules 不再单独分发（体积/文件数双降）。
+ *
+ * @param {string} pluginDir 插件源码目录
+ * @param {object} manifest 插件清单（取 main 作为打包入口）
+ * @returns {{files: Array<{name: string, data: Buffer}>, bundle: object|null, obfuscatedCount: number}}
+ */
+function collectPluginFiles(pluginDir, manifest) {
+  // 安装生产依赖（随包分发，宿主不做应用级模块回落）
+  ensureDependencies(pluginDir);
+
+  const bundle = bundleLib.bundlePlugin(pluginDir, {
+    entry: (manifest && manifest.main) || 'index.js',
+  });
+
+  const skip = new Set();
+  const skipPrefixes = [];
+  if (bundle) {
+    for (const rel of bundle.consumed) skip.add(rel);
+    skip.add(bundle.outputName);
+    if (bundle.dropNodeModules) skipPrefixes.push('node_modules/');
+  }
+
+  const files = [];
+  walk(pluginDir, pluginDir, files, { skip, skipPrefixes });
+  if (bundle) files.push({ name: bundle.outputName, data: bundle.output });
+  if (files.length === 0) return { files, bundle, obfuscatedCount: 0 };
+
+  // 对插件自身 JS 做混淆（替换 .js 文件内容；node_modules 保持原样）
+  // 打包产物此时已在 files 中，因此天然满足「先 bundle 后混淆」
+  let obfuscatedCount = 0;
+  for (const f of files) {
+    if (f.name.endsWith('.js') && !f.name.startsWith(NO_OBFUSCATE_PREFIX)) {
+      const source = f.data.toString('utf8');
+      const isBundle = !!(bundle && f.name === bundle.outputName);
+      const obfuscated = obfuscateSource(source, isBundle ? 'bundle' : 'file');
+      if (obfuscated !== source) {
+        f.data = Buffer.from(obfuscated, 'utf8');
+        obfuscatedCount++;
+      }
+    }
+  }
+
+  return { files, bundle, obfuscatedCount };
 }
 
 // 从 manifest 中推断出合理的分类
@@ -273,27 +358,21 @@ function buildPlugin(p, privPem, pubPem) {
     : '>=1.0.8';
   const requiresPro = manifest.exemptFromLimit !== true;
 
-  // 安装生产依赖（随包分发，宿主不做应用级模块回落）
-  ensureDependencies(p.dir);
-
-  // 收集文件
-  const files = [];
-  walk(p.dir, p.dir, files);
+  // 收集文件：安装依赖 →（可选）esbuild 打包 → 混淆
+  const { files, bundle, obfuscatedCount } = collectPluginFiles(p.dir, manifest);
   if (files.length === 0) {
     log(`    ⚠ 跳过 ${pluginId}@${version}：无文件`);
     return null;
   }
 
-  // 对插件自身 JS 做混淆（替换 .js 文件内容；node_modules 保持原样）
-  let obfuscatedCount = 0;
-  for (const f of files) {
-    if (f.name.endsWith('.js') && !f.name.startsWith(NO_OBFUSCATE_PREFIX)) {
-      const obfuscated = obfuscateSource(f.data.toString('utf8'));
-      if (obfuscated !== f.data.toString('utf8')) {
-        f.data = Buffer.from(obfuscated, 'utf8');
-        obfuscatedCount++;
-      }
-    }
+  if (bundle) {
+    const kb = Math.round(bundle.output.length / 1024);
+    log(
+      `    📦 依赖打包: ${bundle.inputCount} 个模块 → 1 个 ${bundle.outputName} (${kb} KB, ${bundle.ms} ms)` +
+        (bundle.dropNodeModules
+          ? '；node_modules 不再随包分发'
+          : `；保留 node_modules（真实 external: ${bundle.keptExternals.join(',')}）`),
+    );
   }
   if (obfuscatedCount > 0) {
     log(`    🔒 混淆 ${obfuscatedCount} 个 JS 文件`);
@@ -343,6 +422,10 @@ function buildPlugin(p, privPem, pubPem) {
     minAppVersion,
     requiresPro,
     size: zipBuf.length,
+    // 构建观测：用于记录产物体积变化（依赖准入规范）
+    bundled: !!bundle,
+    fileCount: files.length,
+    unpackedSize: files.reduce((sum, f) => sum + f.data.length, 0),
     keywords: manifest.keywords || [],
     permissions: manifest.permissions || [],
     engines: manifest.engines || {},
@@ -500,6 +583,7 @@ module.exports = {
   inferCategory,
   compareVersions,
   scanPluginDirs,
+  collectPluginFiles,
   buildPlugin,
 };
 

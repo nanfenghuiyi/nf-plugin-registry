@@ -11,6 +11,7 @@
     "typecheck": "node market-api/node_modules/typescript/bin/tsc --noEmit -p market-api/tsconfig.json"
   },
   "devDependencies": {
+    "esbuild": "^0.21.5",
     "javascript-obfuscator": "^4.1.1"
   }
 }
