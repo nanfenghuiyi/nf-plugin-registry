@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-17T08:20:10.641Z",
+  "updatedAt": "2026-11-17T08:21:39.231Z",
   "plugins": {
     "app/nf.app.admin": "8014786f75ad837a92ad7be8ef01e5174d3959346e37b4fb12e3f6e149d26c11",
     "app/nf.app.edge-bookmarks": "5b5220f41f21035383f0a214f24418efaacf0b41cea8b87403cf53974db5c4fd",
@@ -10,7 +10,7 @@
     "app/nf.app.local-search": "95b4d427d89a8bd15b4f17de383adba4dcea516ab08bc23024a52d67b5d8e4ca",
     "app/nf.app.localweb": "d51cfaf808ff34f604a46cc981aab29e7e873c30ffaa64c076aa22b35e9ae1e3",
     "app/nf.app.nfprint": "ba8b9bbf2854bd5e46bbb5f069876d9aa05363ae3b21bbe544f6a9204dac0073",
-    "app/nf.app.ocr": "79a9c7240e8f450456678430854e94a1c1e6cb969d15a3f2e212eabc68ca27fa",
+    "app/nf.app.ocr": "f1a18c457799e089caae805b97668c5d8da4f1950e0773754f09d7cd00197ea9",
     "app/nf.app.photo": "be854b142a78f399beb7a7e44ef4c79a1f7220413dcdfd250f52e3a9b11ba307",
     "app/nf.app.planner": "da8c17d3167bf8f9e4fcff0281e6b77e0b4d6bd324813f9c5eed775610455a04",
     "app/nf.app.power-scheduler": "2a5275812b6c8f15c8f35581600e1950841db37b829280b7f2e84de40aaf9a38",

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-17T08:20:10.613Z",
+  "updatedAt": "2026-11-17T08:21:39.201Z",
   "totalPlugins": 39,
   "categories": {
     "admin": {
@@ -1019,7 +1019,7 @@
       "category": "tool",
       "type": "app",
       "author": "NF Team",
-      "icon": "icon.svg",
+      "icon": "icon.png",
       "homepage": "",
       "keywords": [
         "OCR",
@@ -1048,7 +1048,7 @@
         "width": 900,
         "height": 640,
         "title": "OCR 文字识别",
-        "icon": "icon.svg",
+        "icon": "icon.png",
         "minWidth": 720,
         "minHeight": 520,
         "resizable": true,
@@ -1068,9 +1068,22 @@
           "encrypted": true,
           "encryptionVersion": 1,
           "publishedAt": "2026-10-20T02:41:16.539Z"
+        },
+        "1.0.2": {
+          "minAppVersion": ">=1.0.8",
+          "requiresPro": true,
+          "size": 13394802,
+          "downloadUrl": "https://raw.githubusercontent.com/nanfenghuiyi/nf-plugin-registry/main/packages/nf.app.ocr/1.0.2.nfpkg",
+          "checksum": "a0a5e5ac105de54480817b6cbb40771eee2baf957bde9ac2d844aa175bd426f5",
+          "signature": "Eq3Njpuu8IAmex0XUN+kdqKZRuXawxenj6bpt8YQ6lOinSrrDTmPBnwrMTOLV11ouNq8RJplTj2clIrjzWRJDA==",
+          "publicKey": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAg6Rcdt1brXE9uhDnNuUVelCnAQos2yje1vsufcexZ60=\n-----END PUBLIC KEY-----\n",
+          "format": "nfpkg",
+          "encrypted": true,
+          "encryptionVersion": 1,
+          "publishedAt": "2026-11-17T08:21:39.201Z"
         }
       },
-      "latestVersion": "1.0.0"
+      "latestVersion": "1.0.2"
     },
     {
       "id": "nf.app.photo",
