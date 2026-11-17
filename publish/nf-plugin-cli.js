@@ -81,6 +81,9 @@ const DEFAULT_PORTAL_URL = 'https://registry.htnf.dpdns.org';
 // 注意：node_modules 必须随包分发（宿主不提供依赖回落），发布前会自动安装生产依赖
 const EXCLUDE = new Set(['.git', '.DS_Store', 'package-lock.json']);
 
+/** 依赖安装使用的 npm 源（直连 registry.npmjs.org 在国内网络下会长时间卡住） */
+const NPM_REGISTRY = process.env.NF_NPM_REGISTRY || 'https://registry.npmmirror.com';
+
 const GITHUB_OWNER = 'nanfenghuiyi';
 const GITHUB_REPO = 'nf-plugin-registry';
 const GITHUB_BRANCH = 'main';
@@ -133,10 +136,10 @@ function ensureDependencies(pluginDir) {
   // 每次都执行 npm install：既补齐缺失依赖，也按 package.json 清理已移除的依赖
   log(`   安装生产依赖: ${names.join(', ')}`);
   try {
-    execSync('npm install --omit=dev --no-audit --no-fund', {
-      cwd: pluginDir,
-      stdio: 'inherit',
-    });
+    execSync(
+      `npm install --omit=dev --no-audit --no-fund --registry=${NPM_REGISTRY}`,
+      { cwd: pluginDir, stdio: 'inherit' }
+    );
   } catch (e) {
     err(`依赖安装失败: ${e.message}`);
     throw e;

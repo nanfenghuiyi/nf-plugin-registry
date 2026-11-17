@@ -31,6 +31,13 @@ const registrySig = require('../lib/registrySig');
 
 // ============ 配置 ============
 
+// 依赖安装使用的 npm 源：直连 registry.npmjs.org 在国内网络下会长时间卡在 TCP 建连，
+// 默认走 npmmirror，可用环境变量 NF_NPM_REGISTRY 覆盖
+const NPM_REGISTRY = process.env.NF_NPM_REGISTRY || 'https://registry.npmmirror.com';
+
+// 单个插件依赖安装超时（毫秒）：避免网络异常时构建永久挂起
+const NPM_INSTALL_TIMEOUT = 10 * 60 * 1000;
+
 const REGISTRY_DIR = path.resolve(__dirname, '..');
 const PACKAGES_DIR = path.join(REGISTRY_DIR, 'packages');
 const KEYS_DIR = path.join(REGISTRY_DIR, 'keys');
@@ -145,11 +152,16 @@ function ensureDependencies(pluginDir) {
   // 每次都执行 npm install：既补齐缺失依赖，也按 package.json 清理已移除的依赖
   log(`    📥 安装生产依赖: ${names.join(', ')}`);
   try {
-    execFileSync('npm', ['install', '--omit=dev', '--no-audit', '--no-fund'], {
-      cwd: pluginDir,
-      stdio: 'inherit',
-      shell: true,
-    });
+    execFileSync(
+      'npm',
+      ['install', '--omit=dev', '--no-audit', '--no-fund', `--registry=${NPM_REGISTRY}`],
+      {
+        cwd: pluginDir,
+        stdio: 'inherit',
+        shell: true,
+        timeout: NPM_INSTALL_TIMEOUT,
+      }
+    );
   } catch (e) {
     throw new Error(`依赖安装失败: ${e.message}`);
   }
